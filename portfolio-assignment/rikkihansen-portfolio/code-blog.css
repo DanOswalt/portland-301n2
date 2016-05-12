@@ -4,18 +4,39 @@
   padding-top: 10px;
   text-align: center;
   top: 0;
-  /*z-index: 10;
-  position: fixed;*/
+  z-index: 10;
+  /*position: fixed;*/
 }
 
-.topNav a {
+.topNav li {
   display: inline-block;
   margin: 30px 20px 30px 20px;
   font-size: 25px;
   text-decoration: none;
-  /*z-index: 20;*/
+  z-index: 20;
+
+}
+
+a {
+  text-decoration: none;
 }
 
 a:hover {
   font-weight: bold;
+}
+
+.wrap {
+  margin-top: 100px;
+  background-color: rgba(40, 8, 32, 0.2);
+  font-family: serif;
+  margin: 0;
+ }
+
+.image-area {
+  margin-top: 400px;
+  z-index: 10;
+}
+
+.footer {
+  margin: 100, 50;
 }
