@@ -52,6 +52,7 @@ portfolioView.showMore = function(){
   $('article').on('click', '.show-more', function(e){
     e.preventDefault();
     $(this).prev().children('p').fadeIn();
+    $(this).hide();
   });
 };
 

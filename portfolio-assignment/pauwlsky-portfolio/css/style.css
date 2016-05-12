@@ -148,6 +148,7 @@ select{
   color:  #437365;
   background-color: rgba(140, 195, 176, 0.14);
   border: solid rgba(64, 61, 61, 0.09) 1px;
+  background: url(../images/br_down.png) rgba(140, 195, 176, 0.14) no-repeat 95%;
 }
 
 /*ARTICLE CONTENT STYLING*/
@@ -164,7 +165,7 @@ article{
 }
 
 .title-date{
-  padding:2px 40px 2px 40px;
+  padding:2px 0px 2px 20px;
 }
 
 .text{
@@ -187,7 +188,6 @@ a.show-more{
 }
 
 .skillsGithub{
-  padding: 0 20px 20px;
   margin: 20px 0;
 }
 
@@ -273,4 +273,48 @@ footer a{
 }
 
 
-TODO /*MEDIA QUERIES*/
+ /*MEDIA QUERIES TODO*/
+
+@media screen and (max-width: 500px){
+  p.url-text{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 745px){
+
+  .nav-container{
+    flex-direction: column;
+    height: 100%
+  }
+
+  .nav-container ul{
+    display: block;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  .nav-container li{
+    width: 100%;
+    padding: 1% 0;
+    margin: 1% auto;
+  }
+
+  .nav-container select{
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 890px){
+  .text{
+    clear: both;
+  }
+
+  .image{
+    margin: 20px 0 50px 0;
+  }
+}
