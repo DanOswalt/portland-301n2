@@ -103,6 +103,8 @@ li {
 
 }
 
+/* when width is more than 500 */
+
 @media all and (min-width: 500px) {
   #nav-links li {
     display: inline-block;
