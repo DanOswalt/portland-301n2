@@ -40,6 +40,11 @@ ProjectModule.prototype.load = function() {
     return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
   });
 
+  //get JSON
+
+  // var data = $.getJSON('data/projectJSON.json');
+  // console.log(data);
+
   //create new projects from projectData and add to html
   this.data.forEach( function(projectData) {
     var newProject = new Project(projectData);
