@@ -29,7 +29,6 @@ Handlebars.registerHelper('daysAgo', function(person) {
 ***/
 
 function ProjectModule(projectData) {
-  //receives array of project data
   this.data = projectData;
 };
 
@@ -39,11 +38,6 @@ ProjectModule.prototype.load = function() {
   this.data.sort(function(a,b) {
     return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
   });
-
-  //get JSON
-
-  // var data = $.getJSON('data/projectJSON.json');
-  // console.log(data);
 
   //create new projects from projectData and add to html
   this.data.forEach( function(projectData) {
@@ -77,9 +71,15 @@ ViewHandler.prototype.handleTabClicks = function() {
  **/
 
 $(function() {
-  var projectModule = new ProjectModule(projectData);
-  var viewHandler = new ViewHandler();
+  try {
+    $.getJSON('data/projectJSON1.json', function(json) {
+      var projectModule = new ProjectModule(json.data);
+      projectModule.load();
+    });
+  } catch(e) {
+    $('#projects-module').append('<p>oops, try again</p>');
+  }
 
-  projectModule.load();
+  var viewHandler = new ViewHandler();
   viewHandler.handleTabClicks();
 });
