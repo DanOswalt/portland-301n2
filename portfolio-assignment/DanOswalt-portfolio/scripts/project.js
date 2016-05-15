@@ -59,7 +59,6 @@ ViewHandler.prototype.handleTabClicks = function() {
   $('#nav-links').on('click', 'li.tab', function(e){
     e.preventDefault();
     var $dataContent = $(this).attr('data-content');
-    console.log($dataContent);
     $('.tab-view').fadeOut('fast');
     $('#' + $dataContent).fadeIn('fast');
   });
@@ -71,15 +70,12 @@ ViewHandler.prototype.handleTabClicks = function() {
  **/
 
 $(function() {
-  try {
-    $.getJSON('data/projectJSON1.json', function(json) {
-      var projectModule = new ProjectModule(json.data);
-      projectModule.load();
-    });
-  } catch(e) {
-    $('#projects-module').append('<p>oops, try again</p>');
-  }
-
   var viewHandler = new ViewHandler();
+
+  $.getJSON('data/projectJSON.json', function(json) {
+    var projectModule = new ProjectModule(json.data);
+    projectModule.load();
+  });
+
   viewHandler.handleTabClicks();
 });

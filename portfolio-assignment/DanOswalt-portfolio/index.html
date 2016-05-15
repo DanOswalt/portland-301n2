@@ -33,9 +33,9 @@
 
         <!-- Handlebars Project Template -->
         <script id='project-template' type='text/template'>
-          <div class='project template'>
+          <div class='project'>
             <header>
-              <h2 class='title'><a class='project-link' href={{url}}>{{title}}</a></h2><!--project.title, project.url-->
+              <h2 class='title'><a class='project-link' href={{url}} target="_blank">{{title}}</a></h2><!--project.title, project.url-->
               <p class='description'>{{description}}</p><!--project.description-->
               <div class='byline'>
                 <span class='author'>{{publishedBy}}</span><!--project.publishedBy-->
@@ -44,7 +44,7 @@
               <br>
               <section class='details-container'>
                 <p class='details'>{{details}}</p><!--project.details-->
-                <p><a class='code-link' href={{codeUrl}}>See Code</a></p><!--project.codeUrl-->
+                <p><a class='code-link' href={{codeUrl}} target="_blank">See Code</a></p><!--project.codeUrl-->
                 <img src={{screenshot}} alt='{{screenshot}}'><!--project.screenshot-->
                 <br>
                 <br>
@@ -52,6 +52,7 @@
             </header>
           </div>
         </script>
+      </section>
 
       <!-- about tab content -->
       <section id='about' class='tab-view'>
