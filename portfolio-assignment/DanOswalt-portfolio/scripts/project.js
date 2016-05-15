@@ -58,9 +58,9 @@ function ViewHandler() {
 ViewHandler.prototype.handleTabClicks = function() {
   $('#nav-links').on('click', 'li.tab', function(e){
     e.preventDefault();
-    var $dataContent = $(this).attr('data-content');
+    var dataContent = $(this).attr('data-content');
     $('.tab-view').fadeOut('fast');
-    $('#' + $dataContent).fadeIn('fast');
+    $('#' + dataContent).fadeIn('fast');
   });
 };
 
