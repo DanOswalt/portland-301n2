@@ -9,30 +9,36 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/modules.css">
 
-  </head>
-
-  <body>
     <main>
+      <section id='new-project-form-module'>
+        <form action="#" id='new-project'>
+          <label>
+            <input type="text" id="project-title" placeholder="Title" required>
+          </label>
+          <label>
+            <input type="text" id="project-publishedBy" placeholder="Dan Oswalt" required>
+          </label>
+          <label>
+            <input type="text" id="project-url" placeholder="Project URL" required>
+          </label>
+          <label>
+            <input type="text" id="project-codeUrl" placeholder="Github URL" required>
+          </label>
+          <label>
+            <textarea id="project-description" placeholder="Description" rows="3" cols="40" required></textarea>
+          </label>
+          <label>
+            <textarea id="project-details" placeholder="Details" rows="20" cols="40" required></textarea>
+          </label>
 
-      <header>
-        <h1 id='title-headline'>Dan Oswalt</h1>
-        <nav id='nav-links'>
-          <ul>
-            <a href=''><li class="tab" data-content="projects-module">Home</li><a>
-            <a href=''><li class="tab" data-content="about">About</li><a>
-            <a href='https://github.com/DanOswalt' target="_blank" ><li>GitHub</li><a>
-            <a href='' target="_blank" ><li>Twitter</li><a>
-            <a href='' target="_blank" ><li>LinkedIn</li><a>
-          </ul>
-        </nav>
-
-      </header>
+        </form>
+      </section>
 
       <!-- Project-views load here -->
-      <section id='projects-module' class='tab-view'>
+      <section id='project-preview'>
 
         <!-- Handlebars Project Template -->
-        <script id='project-template' type='text/template'>
+        <script id='project-template' type="text/x-handlebars-template">
           <div class='project'>
             <header>
               <h2 class='title'><a class='project-link' href={{url}} target="_blank">{{title}}</a></h2><!--project.title, project.url-->
@@ -54,18 +60,12 @@
         </script>
       </section>
 
-      <!-- about tab content -->
-      <section id='about' class='tab-view'>
-        <div class='about-container'>
-          <img src='img/profilepic.jpeg'>
-          <p>Some info about me!</p>
-          <p>Fascinating information Fascinating information Fascinating information Fascinating information Fascinating information  </p>
-        </div>
+      <section id="project-export">
+        <label>
+          <input type="text" placeholder="JSON" readonly id="project-json" />
+          When finalized, copy the above JSON, and paste into projectJSON.json
+        </label>
       </section>
-
-      <footer>
-      &copy; 2016 Dan Oswalt <!--want this to be sticky-->
-      </footer>
 
     </main>
   </body>

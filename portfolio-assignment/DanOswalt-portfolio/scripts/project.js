@@ -14,7 +14,7 @@ function Project (opts) {
 }
 
 Project.prototype.toHtml = function() {
-  var $newProject = $('.template').clone();
+  console.log($('#project-template').length);
   var appTemplate = $('#project-template').html();
   var compileTemplate = Handlebars.compile(appTemplate);
   return compileTemplate(this);
@@ -64,6 +64,44 @@ ViewHandler.prototype.handleTabClicks = function() {
   });
 };
 
+ViewHandler.prototype.initNewProject = function() {
+  var self = this;
+  $('#new-project').on('keyup', 'input, textarea', self.createProjectFromForm);
+};
+
+ViewHandler.prototype.handleJSONSelection = function() {
+  $('#project-json').on('focus', function() {
+    this.select();
+  });
+};
+
+ViewHandler.prototype.createProjectFromForm = function() {
+  var project;
+
+  $('#project-preview').empty();
+  project = new Project({
+    title: $('#project-title').val(),
+    description: $('#project-description').val(),
+    details: $('#project-details').val(),
+    publishedBy: $('#project-title').val(),
+    publishedOn: new Date(),
+    url: $('#project-url').val(),
+    codeUrl: $('#project-codeUrl').val(),
+    screenshot: ''
+  });
+
+  $('#project-preview').append(project.toHtml());
+
+  $('#project-json').val(JSON.stringify(project));
+  console.log('Final json\n', JSON.stringify(project, null, 2));
+};
+
+ViewHandler.prototype.init = function() {
+  this.initNewProject();
+  this.handleTabClicks();
+  this.handleJSONSelection();
+};
+
 
 /****
  * Code to run on page load
@@ -72,10 +110,10 @@ ViewHandler.prototype.handleTabClicks = function() {
 $(function() {
   var viewHandler = new ViewHandler();
 
-  $.getJSON('data/projectJSON.json', function(json) {
-    var projectModule = new ProjectModule(json.data);
-    projectModule.load();
-  });
+  // $.getJSON('data/projectJSON.json', function(json) {
+  //   var projectModule = new ProjectModule(json.data);
+  //   projectModule.load();
+  // });
 
-  viewHandler.handleTabClicks();
+  viewHandler.init();
 });

@@ -27,6 +27,14 @@
   color: #AC1603;
 }
 
+#new-project-form-module {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  color: #010101;
+}
+
+
 /* when width is less than 500 */
 
 @media all and (max-width: 499px) {
@@ -35,9 +43,22 @@
   }
 }
 
-/* when width is greater than 500 */
+/* when width is greater than 500 but less than 1000*/
 
-@media all and (min-width: 500px) {
+@media all and (min-width: 500px) and (max-width: 999px) {
   #projects-module {
     width: 75%;
 }
+
+/* when width is greater 1000*/
+
+@media all and (min-width: 1000px) {
+  #new-project-form-module {
+    max-width: 40%;
+    background-color: pink;
+  }
+
+  #project-preview {
+    max-width: 60%;
+    background-color: orange;
+  }

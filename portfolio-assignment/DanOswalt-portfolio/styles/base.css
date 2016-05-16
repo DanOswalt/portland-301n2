@@ -41,6 +41,12 @@ li {
   display: inline-block;
 }
 
+input,
+textarea {
+  display: block;
+  margin: 5px;
+}
+
 /***
  * Layout rules
  **/
