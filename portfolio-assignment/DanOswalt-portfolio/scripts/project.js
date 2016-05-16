@@ -115,20 +115,4 @@ $(function() {
   });
 
   viewHandler.init();
-
-  try {
-    $.getJSON('data/projectJSON1.json', function(json) {
-      var projectModule = new ProjectModule(json.data);
-      projectModule.load();
-    });
-  } catch(e) {
-    $('#projects-module').append('<p>oops, try again</p>');
-  }
-
-  var projectModule = new ProjectModule(projectData);
-  var viewHandler = new ViewHandler();
-
-  projectModule.load();
-  viewHandler.handleTabClicks();
->>>>>>> 1019284bd181385e8e005387a4f6e3464d85863c
 });

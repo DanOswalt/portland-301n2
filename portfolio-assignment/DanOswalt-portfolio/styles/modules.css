@@ -54,11 +54,13 @@
 
 @media all and (min-width: 1000px) {
   #new-project-form-module {
+    display: inline-block;
     max-width: 40%;
     background-color: pink;
   }
 
   #project-preview {
+    display: inline-block;
     max-width: 60%;
     background-color: orange;
   }
