@@ -109,8 +109,16 @@ textarea {
 
 }
 
+<<<<<<< HEAD
 /* when width is more than 500 */
 
+=======
+<<<<<<< HEAD
+/* when width is more than 500 */
+
+=======
+>>>>>>> 0e86787855b76287c1c8eb3d3c1b9b33e9371644
+>>>>>>> 1019284bd181385e8e005387a4f6e3464d85863c
 @media all and (min-width: 500px) {
   #nav-links li {
     display: inline-block;
