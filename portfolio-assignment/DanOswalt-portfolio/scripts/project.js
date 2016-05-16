@@ -83,7 +83,7 @@ ViewHandler.prototype.createProjectFromForm = function() {
     title: $('#project-title').val(),
     description: $('#project-description').val(),
     details: $('#project-details').val(),
-    publishedBy: $('#project-title').val(),
+    publishedBy: $('#project-publishedBy').val(),
     publishedOn: new Date(),
     url: $('#project-url').val(),
     codeUrl: $('#project-codeUrl').val(),
