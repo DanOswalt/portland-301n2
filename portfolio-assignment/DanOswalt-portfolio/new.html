@@ -9,63 +9,72 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/modules.css">
 
-    <main>
-      <section id='new-project-form-module'>
-        <form action="#" id='new-project'>
-          <label>
-            <input type="text" id="project-title" placeholder="Title" required>
-          </label>
-          <label>
-            <input type="text" id="project-publishedBy" placeholder="Dan Oswalt" required>
-          </label>
-          <label>
-            <input type="text" id="project-url" placeholder="Project URL" required>
-          </label>
-          <label>
-            <input type="text" id="project-codeUrl" placeholder="Github URL" required>
-          </label>
-          <label>
-            <textarea id="project-description" placeholder="Description" rows="3" cols="40" required></textarea>
-          </label>
-          <label>
-            <textarea id="project-details" placeholder="Details" rows="20" cols="40" required></textarea>
-          </label>
-
-        </form>
-      </section>
-
-      <!-- Project-views load here -->
-      <section id='project-preview'>
-
-        <!-- Handlebars Project Template -->
-        <script id='project-template' type="text/x-handlebars-template">
-          <div class='project'>
-            <header>
-              <h2 class='title'><a class='project-link' href={{url}} target="_blank">{{title}}</a></h2><!--project.title, project.url-->
-              <p class='description'>{{description}}</p><!--project.description-->
-              <div class='byline'>
-                <span class='author'>{{publishedBy}}</span><!--project.publishedBy-->
-                published this <time pubdate datetime={{publishedOn}}>{{daysAgo}}</time><!--project.publishedOn-->
-              </div>
-              <br>
-              <section class='details-container'>
-                <p class='details'>{{details}}</p><!--project.details-->
-                <p><a class='code-link' href={{codeUrl}} target="_blank">See Code</a></p><!--project.codeUrl-->
-                <img src={{screenshot}} alt='{{screenshot}}'><!--project.screenshot-->
-                <br>
-                <br>
-              </section>
-            </header>
+    <!-- Handlebars Project Template -->
+    <script id='project-template' type="text/x-handlebars-template">
+      <div class='project'>
+        <header>
+          <h2 class='title'><a class='project-link' href={{url}} target="_blank">{{title}}</a></h2><!--project.title, project.url-->
+          <p class='description'>{{description}}</p><!--project.description-->
+          <div class='byline'>
+            <span class='author'>{{publishedBy}}</span><!--project.publishedBy-->
+            published this <time pubdate datetime={{publishedOn}}>{{daysAgo}}</time><!--project.publishedOn-->
           </div>
-        </script>
-      </section>
+          <br>
+          <section class='details-container'>
+            <p class='details'>{{details}}</p><!--project.details-->
+            <p><a class='code-link' href={{codeUrl}} target="_blank">See Code</a></p><!--project.codeUrl-->
+            <img src={{screenshot}} alt='{{screenshot}}'><!--project.screenshot-->
+            <br>
+            <br>
+          </section>
+        </header>
+      </div>
+    </script>
 
-      <section id="project-export">
-        <label>
-          <input type="text" placeholder="JSON" readonly id="project-json" />
-          When finalized, copy the above JSON, and paste into projectJSON.json
-        </label>
-      </section>
+    <main>
+      <div id='form-and-preview-container'>
+        <section id='new-project-form-module'>
+          <form action="#" id='new-project'>
+            <label>
+              <input type="text" id="project-title" placeholder="Title" required>
+            </label>
+            <label>
+              <input type="text" id="project-publishedBy" placeholder="Dan Oswalt" required>
+            </label>
+            <label>
+              <input type="text" id="project-url" placeholder="Project URL" required>
+            </label>
+            <label>
+              <input type="text" id="project-codeUrl" placeholder="Github URL" required>
+            </label>
+            <label>
+              <textarea id="project-description" placeholder="Description" rows="3" cols="40" required></textarea>
+            </label>
+            <label>
+              <textarea id="project-details" placeholder="Details" rows="20" cols="40" required></textarea>
+            </label>
+
+          </form>
+        </section>
+
+        <aside id='project-preview-container'>
+          <section id="project-export">
+            <label>
+              When finalized, copy this JSON, and paste into projectJSON.json:
+              <input type="text" placeholder="JSON" readonly id="project-json" />
+            </label>
+          </section>
+          <hr>
+          <h2>Preview:</h2>
+          <hr>
+
+          <!-- Project-views load here -->
+          <section id='project-preview'>
+
+          </section>
+
+        </aside>
+      </div>
 
     </main>
   </body>
