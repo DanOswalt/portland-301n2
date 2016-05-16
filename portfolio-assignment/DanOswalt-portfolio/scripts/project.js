@@ -14,7 +14,7 @@ function Project (opts) {
 }
 
 Project.prototype.toHtml = function() {
-  console.log($('#project-template').length);
+  console.log($('#project-template').html());
   var appTemplate = $('#project-template').html();
   var compileTemplate = Handlebars.compile(appTemplate);
   return compileTemplate(this);
@@ -110,10 +110,9 @@ ViewHandler.prototype.init = function() {
 $(function() {
   var viewHandler = new ViewHandler();
 
-  // $.getJSON('data/projectJSON.json', function(json) {
-  //   var projectModule = new ProjectModule(json.data);
-  //   projectModule.load();
-  // });
+  $.getJSON('data/projectJSON.json', function(json) {
+    new ProjectModule(json.data).load();
+  });
 
   viewHandler.init();
 });
