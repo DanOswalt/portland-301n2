@@ -126,7 +126,7 @@ ViewHandler.prototype.handleNewProjectSubmit = function() {
 
     //if form is not empty
     if(!self.formIsEmpty()) {
-      //append json to data
+      //TODO: append json to data
       //save to local storage
       //clear the field
     } else {
@@ -136,7 +136,7 @@ ViewHandler.prototype.handleNewProjectSubmit = function() {
   });
 };
 
-//run this on change also, so json field and preview are cleared if empty
+//TODO: run this on change also, so json field and preview are cleared if empty
 ViewHandler.prototype.formIsEmpty = function() {
 
   //check if any inputs have characters
