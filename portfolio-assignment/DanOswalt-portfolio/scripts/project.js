@@ -116,14 +116,20 @@ ViewHandler.prototype.createProjectFromForm = function() {
   });
 
   $('#project-preview').append(project.toHtml());
-
   $('#project-json').val(JSON.stringify(project));
-  console.log('Final json\n', JSON.stringify(project, null, 2));
+};
+
+ViewHandler.prototype.handleNewProjectSubmit = function() {
+  $('#new-project').on('submit', function(e){
+    e.preventDefault();
+    console.log('submit');
+  });
 };
 
 ViewHandler.prototype.init = function() {
   this.initNewProject();
   this.handleTabClicks();
+  this.handleNewProjectSubmit();
   this.handleJSONSelection();
 };
 
