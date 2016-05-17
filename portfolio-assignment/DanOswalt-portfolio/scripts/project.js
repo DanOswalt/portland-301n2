@@ -14,7 +14,6 @@ function Project (opts) {
 }
 
 Project.prototype.toHtml = function() {
-  console.log($('#project-template').html());
   var appTemplate = $('#project-template').html();
   var compileTemplate = Handlebars.compile(appTemplate);
   return compileTemplate(this);
@@ -28,23 +27,49 @@ Handlebars.registerHelper('daysAgo', function(person) {
 * class ProjectModule
 ***/
 
-function ProjectModule(projectData) {
-  this.data = projectData;
+function ProjectModule() {
+  var self = this;
+  this.data = this.loadFromLocalStorage();
+
+  if(!this.data){
+    $.getJSON('data/projectJSON.json')
+      .done(function(json){
+        self.data = json.data;
+      }).fail(function(){
+        self.data = [];
+      }).always(function() {
+        self.loadProjects();
+        self.saveToLocalStorage();
+      });
+  };
 };
 
-ProjectModule.prototype.load = function() {
-
+ProjectModule.prototype.loadProjects = function() {
   //sort the data array
   this.data.sort(function(a,b) {
     return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
   });
 
   //create new projects from projectData and add to html
-  this.data.forEach( function(projectData) {
+  this.data.forEach(function(projectData) {
     var newProject = new Project(projectData);
     $('#projects-module').append(newProject.toHtml());
   });
+};
 
+ProjectModule.prototype.saveToLocalStorage = function() {
+  console.log('save data');
+  localStorage.setItem('data', JSON.stringify(this.data));
+};
+
+ProjectModule.prototype.clearFromLocalStorage = function() {
+  console.log('clear data');
+  localStorage.removeItem('data');
+};
+
+ProjectModule.prototype.loadFromLocalStorage = function() {
+  console.log('load data');
+  this.data = JSON.parse(localStorage.getItem('data'));
 };
 
 /***
@@ -102,17 +127,13 @@ ViewHandler.prototype.init = function() {
   this.handleJSONSelection();
 };
 
-
 /****
  * Code to run on page load
  **/
 
 $(function() {
+  var projectModule = new ProjectModule();
   var viewHandler = new ViewHandler();
-
-  $.getJSON('data/projectJSON.json', function(json) {
-    new ProjectModule(json.data).load();
-  });
-
   viewHandler.init();
+  // projectModule.clearFromLocalStorage();
 });
