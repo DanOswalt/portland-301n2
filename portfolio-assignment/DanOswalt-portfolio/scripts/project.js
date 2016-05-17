@@ -120,10 +120,38 @@ ViewHandler.prototype.createProjectFromForm = function() {
 };
 
 ViewHandler.prototype.handleNewProjectSubmit = function() {
-  $('#new-project').on('submit', function(e){
-    e.preventDefault();
-    console.log('submit');
+  var self = this;
+
+  $('#new-project-submit').on('click', function(){
+
+    //if form is not empty
+    if(!self.formIsEmpty()) {
+      //append json to data
+      //save to local storage
+      //clear the field
+    } else {
+      //don't do anything
+      //error msg?
+    }
   });
+};
+
+//run this on change also, so json field and preview are cleared if empty
+ViewHandler.prototype.formIsEmpty = function() {
+
+  //check if any inputs have characters
+  var isEmpty = true;
+  $('#new-project :input').each(function(){
+
+    //if the trimmed input is a character, immediately break out and set to false
+    if($.trim($(this).val()) !== '') {
+      isEmpty = false;
+      return;
+    };
+  });
+
+  //else, there's nothing in the form
+  return isEmpty;
 };
 
 ViewHandler.prototype.init = function() {

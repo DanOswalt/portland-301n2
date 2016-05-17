@@ -54,17 +54,10 @@
             <label>
               <textarea id="project-details" placeholder="Details" rows="20" cols="40" required></textarea>
             </label>
-            <input type="submit" value="save" id="new-form-submit">
           </form>
         </section>
 
         <aside id='project-preview-container'>
-          <section id="project-export">
-            <label>
-              When finalized, copy this JSON, and paste into projectJSON.json:
-              <input type="text" readonly id="project-json" />
-            </label>
-          </section>
           <hr>
           <h2>Preview:</h2>
           <hr>
@@ -72,6 +65,13 @@
           <!-- Project-views load here -->
           <section id='project-preview'>
 
+          </section>
+          <section id="project-export">
+            <label>
+              Copy JSON or save to local storage
+              <input type="text" readonly id="project-json" />
+              <div id="new-project-submit">save</div>
+            </label>
           </section>
 
         </aside>
