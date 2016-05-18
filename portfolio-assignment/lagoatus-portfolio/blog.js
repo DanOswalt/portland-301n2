@@ -1,4 +1,4 @@
-console.log (Projects);
+console.log(Projects);
 
 // NOTE: MOST OF THE FUNCTIONS AND JQUERY STRUCTURE THAT I USED ARE HEAVILY
 // BASED-ON THE PAIR-PROGRAMMING PROJECT TEMPLATE. I REWROTE ALL OF IT BY HAND TO LEARN,
@@ -7,7 +7,7 @@ console.log (Projects);
 
 var subsections = [];
 
-function Projects (input) {
+function Projects(input) {
   this.title = input.title;
   this.role = input.role;
   this.projectUrl = input.projectUrl;
@@ -17,26 +17,22 @@ function Projects (input) {
 }
 
 Projects.prototype.toHtml = function() {
-  var $newProject = $('article.template').clone();
+  // var $newProject = $('article.template').clone();
 
-  $newProject.find('h1').html(this.title);
-  $newProject.find('address a').html(this.role);
-  $newProject.find('.project-body').html(this.body);
-  $newProject.find('time').html(this.completionDate);
-  //
-  $newProject.find('time[pubdate]').attr('title', this.completionDate);
-  //
-  $newProject.find('time').html(parseInt((new Date() - new Date(this.completionDate))/60/60/24/1000) + ' days ago');
-  // The date jquery above I left intact.... not sure how to change in a way to make it original
+  var articleTemplate = $('#template').html();
+  var compiledTemplate = Handlebars.compile(articleTemplate);
 
-  $newProject.removeClass('template');
-  return $newProject;
+  this.daysAgo = parseInt((new Date() - new Date(this.completionDate)) / 60 / 60 / 24 / 1000);
+  this.publishStatus = this.completionDate ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
+
+  return compiledTemplate(this);
+
 };
 
 myProjects.forEach(function(i) {
   subsections.push(new Projects(i));
 });
 
-subsections.forEach(function(a){
+subsections.forEach(function(a) {
   $('#projects').append(a.toHtml());
 });

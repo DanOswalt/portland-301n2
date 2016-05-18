@@ -8,6 +8,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.min.js" charset="utf-8"></script>
 
   <script id="first-template" type="text/x-handlebars-template">
+    <!-- dump @root is useful for debugging, it is basically console logging our data-->
+    <!-- #with accessed the values of properties.  -->
     {{dump @root}}
     {{#each people}}
       <p>{{firstName}} {{lastName}}</p>
@@ -25,9 +27,9 @@
     // Register a helper
     // Log object to console
     Handlebars.registerHelper('dump', function(value){
+      //  /n%s means new line and string. ??
       console.log('handlebars data dump=\n%s', JSON.stringify(value, null, '    '));
     });
-
     // This is the default context, which is passed to the template
     // var arrData = {
     //   people: [
