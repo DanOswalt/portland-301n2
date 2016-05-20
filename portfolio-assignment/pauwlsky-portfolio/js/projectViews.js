@@ -35,7 +35,7 @@ portfolioView.showSection = function(){
 portfolioView.filterSelected = function(){
   $('#skills-select').on('change', function(e){
     var $selectVal = $(this).val();
-    if($selectVal === null){
+    if($selectVal === 'See Project By Skills Used'){
       return;
     }
     $projectCategories = $('a[data-category="'+ $selectVal +'"]');
@@ -52,6 +52,23 @@ portfolioView.showMore = function(){
   $('article').on('click', '.show-more', function(e){
     e.preventDefault();
     $(this).prev().children('p').fadeIn();
+    $(this).hide();
+  });
+};
+
+portfolioView.modalShow = function(){
+  $('.modal-show').on('click', function(e){
+    e.preventDefault();
+    $('.modal').css('display', 'block');
+    var title = $(this).parents('article').find('.title').text();
+    var img = $(this).parents('article').find('.image').attr('src');
+    $('.modal-content').append('<h1 class="header">'+ title +'</h1><img src="' + img + '"/>');
+  });
+  //logic for hiding modal on page click
+  //TODO fix logic so modal hides when clicking off of modal
+  $('.modal').on('click', function(e) {
+    $(this).css('display', 'none');
+    $('.modal-content').empty();
   });
 };
 
@@ -60,4 +77,5 @@ $(function(){
   portfolioView.showSection();
   portfolioView.filterSelected();
   portfolioView.showMore();
+  portfolioView.modalShow();
 });
