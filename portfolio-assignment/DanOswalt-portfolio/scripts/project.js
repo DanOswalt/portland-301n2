@@ -127,23 +127,24 @@ ViewHandler.createProjectFromForm = function() {
 
 ViewHandler.handleNewProjectSubmit = function() {
   var self = this;
-  var $projectJSON = $('#project-json').val();
 
   $('#new-project-submit').on('click', function(){
     if(self.formIsNotEmpty()) {
-      var newData = $projectJSON;
-      ProjectModule.data.push[newData];
-      ProjectModule.saveToLocalStorage('data');
+      var newProject = JSON.parse($('#project-json').val());
+      ProjectModule.data.push(newProject);
+      ProjectModule.saveToLocalStorage(ProjectModule.data);
+      console.log(newProject);
+      console.log(ProjectModule.data);
       self.clearInputFields();
     } else {
       //don't do anything
-      //error msg?
+      console.log('form is empty!');
     }
   });
 };
 
 ViewHandler.clearInputFields = function() {
-  $projectJSON.val('');
+  $('#project-json').val('');
   $('#new-project :input').val('');
 };
 
