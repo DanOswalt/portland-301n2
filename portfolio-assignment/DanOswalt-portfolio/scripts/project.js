@@ -127,6 +127,7 @@ ViewHandler.createProjectFromForm = function() {
 
 ViewHandler.handleNewProjectSubmit = function() {
   var self = this;
+  $('project-preview').empty();
 
   $('#new-project-submit').on('click', function(){
     if(self.formIsNotEmpty()) {
@@ -137,7 +138,11 @@ ViewHandler.handleNewProjectSubmit = function() {
       console.log(ProjectModule.data);
       self.clearInputFields();
     } else {
-      //don't do anything
+      // $('#project-export')
+      //   .after()
+      //   .html('<h2 class="msg">Form is empty!</h2>')
+      //   .fadeOut(500);
+
       console.log('form is empty!');
     }
   });
