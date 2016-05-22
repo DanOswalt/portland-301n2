@@ -77,40 +77,24 @@
       return article.author;
     })
     .reduce(function(accumulator, author, i, array) {
-      console.log(author);
-      console.log(accumulator);
-      console.log(array);
-
       return accumulator.indexOf(author) === -1 ? accumulator.concat(author) : accumulator;
     }, []);
   };
 
   Article.numWordsByAuthor = function() {
-    // TODO: Transform each author string into an object with 2 properties: One for
-    // the author's name, and one for the total number of words across all articles written by the specified author.
 
     return Article.allAuthors().map(function(author) {
-        // someKey: someValOrFunctionCall().map(...).reduce(...), ...
       var numWords = Article.all.filter(function(article){
-
         return article.author === author;
-
       }).map(function(article) {
-
         return article.body.split(' ').length;
-
       }).reduce(function(a, b) {
-
-      // Sum up all the values in the collection
         return a + b;
-
       });
-
       return {
         name : author,
         numWords : numWords
       };
-
     });
   };
 
