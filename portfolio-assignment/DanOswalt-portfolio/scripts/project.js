@@ -153,12 +153,9 @@ ViewHandler.clearInputFields = function() {
   $('#new-project :input').val('');
 };
 
-//TODO: run this on change also, so json field and preview are cleared if empty
 ViewHandler.formIsNotEmpty = function() {
-  //check if any inputs have characters
   var isNotEmpty = false;
   $('#new-project :input').each(function(){
-    //if the trimmed input is a character, immediately break out and set to false
     if($.trim($(this).val()) !== '') {
       isNotEmpty = true;
       return;
