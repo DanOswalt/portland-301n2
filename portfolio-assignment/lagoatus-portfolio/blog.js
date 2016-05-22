@@ -5,7 +5,7 @@ console.log(Projects);
 // OMITTED ELEMENTS NOT NECESSARY TO THIS PORTFOLIO, ALTERED MOST NAMING SYSTEMS
 // AS WELL AS ADDED NEW ELEMENTS AND PROPERTIES AS NEEDED.
 
-var subsections = [];
+Projects.all = [];
 
 function Projects(input) {
   this.title = input.title;
@@ -29,10 +29,37 @@ Projects.prototype.toHtml = function() {
 
 };
 
-myProjects.forEach(function(i) {
-  subsections.push(new Projects(i));
-});
 
-subsections.forEach(function(a) {
-  $('#projects').append(a.toHtml());
-});
+Projects.loadAll = function(datas) {
+  datas.forEach(function(i) {
+    Projects.all.push(new Projects(i));
+  });
+};
+
+Projects.fetchall = function() {
+  //
+  // $.ajax({
+  //   type: 'GET',
+  //   url: 'http://rest.learncode.academy/api/aaroy/woo',
+  //   success: function(data) {
+  //     Projects.loadAll(data);
+  //     localStorage.setItem('tawData', JSON.stringify(data));
+  //     console.log('This ajax works', data); //returns friend id#1
+  //   }
+  // });
+
+  if (localStorage.rawData) {
+    Projects.loadAll(
+       JSON.parse(localStorage.getItem('rawData'))
+        );
+    projectView.initIndexPage();
+  }
+  else {
+    $.getJSON('data/blogobjects.json', function(datas) {
+      Projects.loadAll(datas);
+      console.log(datas);
+      localStorage.setItem('rawData', JSON.stringify(datas));
+    });
+    projectView.initIndexPage();
+  }
+};

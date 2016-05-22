@@ -32,34 +32,60 @@ Article.prototype.toHtml = function() {
 // and use it to instantiate all the articles. This code is moved from elsewhere, and
 // encapsulated in a simply-named function for clarity.
 Article.loadAll = function(rawData) {
+  console.log(typeof rawData);
   rawData.sort(function(a,b) {
     return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
   });
 
   rawData.forEach(function(ele) {
     Article.all.push(new Article(ele));
-  });
-};
+  })
+}
 
 // This function will retrieve the data from either a local or remote source,
 // and process it, then hand off control to the View.
 Article.fetchAll = function() {
-  if (localStorage.rawData) {
-    // When rawData is already in localStorage,
-    // we can load it by calling the .loadAll function,
-    // and then render the index page (using the proper method on the articleView object).
-    Article.loadAll(//TODO: What do we pass in here to the .loadAll function?
-    );
-    articleView.someFunctionToCall//(); //TODO: Change this fake method call to the correct one that will render the index page.
-  } else {
-    // TODO: When we don't already have the rawData, we need to:
-    // 1. Retrieve the JSON file from the server with AJAX (which jQuery method is best for this?),
+  $.ajax({
+    method: "GET",
+    url: "../data/hackerIpsum.json",
+    success: function(data, message, xhr) {
+      var etagNew = xhr.getResponseHeader('ETag');
+      var etagOld = localStorage.getItem('etag');
+      console.log("etag new is " + etagNew);
+      console.log("etag old is " + etagOld);
 
-    // 2. Store the resulting JSON data with the .loadAll method,
+      // logic //
+      if (!localStorage.rawData) {
+        // check if etag matches old etag?
+        console.log('no local storage, load from server');
+        loadFromServer();
+      }
+      else if (etagNew === etagOld ) {
+      //load from cache
+      console.log('yes local storage exist and etags match, load from cache')
+      loadFromCache();
+      } else {
+      // load from server
+      console.log('yes local storage exist and etags dont match, load from server')
+      loadFromServer();
+      }
+      //set etag
+      localStorage.setItem('etag',etagNew);
+    }
+  });
 
-    // 3. Cache it in localStorage so we can skip the server call next time,
+   function loadFromServer() {
+    $.getJSON( "../data/hackerIpsum.json", function( data ) {
+      Article.loadAll(data);
+      localStorage.setItem("rawData", JSON.stringify(data));
+      articleView.initIndexPage();
+      });
+    }; // end load from server function
 
-    // 4. And then render the index page (perhaps with an articleView method?).
+  function loadFromCache() {
+    var dataParsed = JSON.parse(localStorage.getItem("rawData"));
+    Article.loadAll(dataParsed);//done: What do we pass in here to the .loadAll function?
+    articleView.initIndexPage();//();
+  }; // end load from cache function
 
-  }
 }

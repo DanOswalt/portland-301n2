@@ -1,4 +1,5 @@
 var viewFunctions = {};
+var projectView = {};
 
 viewFunctions.handleAboutClick = function() {
   $('.tab').on('click', function(e) {
@@ -19,12 +20,18 @@ viewFunctions.handleHomeClick = function() {
 //   });
 // };
 
-
-$(document).ready(function() {
+projectView.initIndexPage = function() {
+  $(document).ready(function() {
+    Projects.all.forEach(function(a) {
+      $('#projects').append(a.toHtml());
+    });
   //viewFunctions.handleBurgClick();
-  viewFunctions.handleAboutClick();
-  viewFunctions.handleHomeClick();
-});
+  });
+};
+
+
+viewFunctions.handleAboutClick();
+viewFunctions.handleHomeClick();
 
 
 $(function(){ // Code source: https://github.com/mattboldt/typed.js/
