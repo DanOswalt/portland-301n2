@@ -186,4 +186,4 @@ $(function() {
   ProjectModule.init();
   ViewHandler.init();
 
-})();
+});

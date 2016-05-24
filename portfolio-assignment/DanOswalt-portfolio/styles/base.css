@@ -98,6 +98,10 @@ textarea {
   margin: 0 auto;
 }
 
+.container {
+  max-width: 100%;
+}
+
 /* when width is less than 500 */
 
 @media all and (max-width: 499px) {

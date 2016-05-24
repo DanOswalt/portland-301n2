@@ -3,6 +3,7 @@
   padding: 0;
   text-align: center;
   color: #E8E2CC;
+  width: 100%;
 }
 
 .byline {
@@ -14,8 +15,8 @@
   background-color: #010101;;
   margin: 50px auto;
   padding: 5px 10px;
-  max-width: 600px;
-  min-width: 350px;
+  /*max-width: 600px;*/
+  /*min-width: 350px;*/
 }
 
 .title {
@@ -84,21 +85,10 @@
 /* when width is less than 500 */
 
 @media all and (max-width: 499px) {
-  #projects-module {
-    width: 100%;
-  }
-
   #new-project-form-module input,
   #new-project-form-module textarea {
     width: 400px;
   }
-}
-
-/* when width is greater than 500 but less than 1000*/
-
-@media all and (min-width: 500px) {
-  #projects-module {
-    width: 75%;
 }
 
 /* when width is greater 1000*/

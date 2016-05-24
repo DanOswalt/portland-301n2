@@ -5,15 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dan Oswalt</title>
     <link rel="stylesheet" href="vendors/styles/normalize.css">
+    <link rel="stylesheet" href="vendors/styles/skeleton.css">
     <link href='https://fonts.googleapis.com/css?family=Poiret+One|Droid+Serif' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/modules.css">
+
+    <!-- Handlebars Project Template -->
+    <script id='project-template' type='text/template'>
+      <div class='project four columns'>
+        <header>
+          <h2 class='title'><a class='project-link' href={{url}} target="_blank">{{title}}</a></h2><!--project.title, project.url-->
+          <p class='description'>{{description}}</p><!--project.description-->
+          <div class='byline'>
+            <span class='author'>{{publishedBy}}</span><!--project.publishedBy-->
+            published this <time pubdate datetime={{publishedOn}}>{{daysAgo}}</time><!--project.publishedOn-->
+          </div>
+          <br>
+          <section class='details-container'>
+            <p class='details'>{{details}}</p><!--project.details-->
+            <p><a class='code-link' href={{codeUrl}} target="_blank">See Code</a></p><!--project.codeUrl-->
+            <img src={{screenshot}} alt='{{screenshot}}'><!--project.screenshot-->
+            <br>
+            <br>
+          </section>
+        </header>
+      </div>
+    </script>
 
   </head>
 
   <body>
     <main>
-
       <header>
         <h1 id='title-headline'>Dan Oswalt</h1>
         <nav id='nav-links'>
@@ -25,34 +47,16 @@
             <a href='' target="_blank" ><li>LinkedIn</li><a>
           </ul>
         </nav>
-
       </header>
 
       <!-- Project-views load here -->
-      <section id='projects-module' class='tab-view'>
+      <div class="container">
+        <div class = 'row'>
+          <section id='projects-module' class='tab-view'>
 
-        <!-- Handlebars Project Template -->
-        <script id='project-template' type='text/template'>
-          <div class='project'>
-            <header>
-              <h2 class='title'><a class='project-link' href={{url}} target="_blank">{{title}}</a></h2><!--project.title, project.url-->
-              <p class='description'>{{description}}</p><!--project.description-->
-              <div class='byline'>
-                <span class='author'>{{publishedBy}}</span><!--project.publishedBy-->
-                published this <time pubdate datetime={{publishedOn}}>{{daysAgo}}</time><!--project.publishedOn-->
-              </div>
-              <br>
-              <section class='details-container'>
-                <p class='details'>{{details}}</p><!--project.details-->
-                <p><a class='code-link' href={{codeUrl}} target="_blank">See Code</a></p><!--project.codeUrl-->
-                <img src={{screenshot}} alt='{{screenshot}}'><!--project.screenshot-->
-                <br>
-                <br>
-              </section>
-            </header>
-          </div>
-        </script>
-      </section>
+          </section>
+        </div>
+      </div>
 
       <!-- about tab content -->
       <section id='about' class='tab-view'>
