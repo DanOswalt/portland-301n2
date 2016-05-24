@@ -83,8 +83,10 @@
     <script src="/scripts/article.js"></script>
     <script src="/scripts/articleView.js"></script>
     <script>
-      // TODO: What model 'Article' function do we need to call, to initiate the retrieval of data?
+      // done The fetchAll method call now requires a callback parameter.
+      // What do we want to run WHEN this method is done?
 
+      Article.fetchAll(articleView.initIndexPage); // Add an argument to the function call.
     </script>
   </body>
 </html>
