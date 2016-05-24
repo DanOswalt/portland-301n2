@@ -177,10 +177,7 @@ $(function() {
       });
       return isNotEmpty;
     }
-
   };
-
-
 
 /****
  * Code to run on page load
@@ -188,5 +185,5 @@ $(function() {
 
   ProjectModule.init();
   ViewHandler.init();
-  // ProjectModule.clearFromLocalStorage('data');
-});
+
+})();
