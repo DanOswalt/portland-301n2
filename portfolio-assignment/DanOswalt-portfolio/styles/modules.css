@@ -83,8 +83,16 @@
 }
 
 #site-footer {
-  vertical-align: middle;
+  background-color: #AC1603;
   font-size: 80%;
+  border-top: #010101 1px solid;
+  color: #E8E2CC;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 30px;
+  width: 100%;
+  z-index: 1;
 }
 
 #site-footer ul {
@@ -93,7 +101,11 @@
 
 #site-footer li {
   margin: 0 2%;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+#site-footer .footer-color {
+  color: #010101
 }
 
 
