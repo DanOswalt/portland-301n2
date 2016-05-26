@@ -1,80 +1,211 @@
-# Finding something in a directory - example
+# Announcements
 
-# Checking and changing ownership - example
+### Get your reviews in
 
-# Unix permissions 
+### Assignments for this Week
+* Wed May 25th: Read: SQL Joins & Relations Links
+* Fri May 27th: Pair Assignment 8 : CRUD Due
+* Fri May 27th: Portfolio Assignment 7 : Functional Due
+* Note: There is no assignment for Portfolio 8: CRUD
+
+### For those following along
+`git checkout -b sandbox`
+
+Remember to add and commit any changes into your sandbox. This will avoid future headaches and merge conflicts.
+
+# Review
+
+## Finding something in a directory - example
+```
+find . // finds all files and directories in current dir (recursively)
+find . -type f // find files in current dir (recursively)
+find . -type f | grep LECTURE // finds all files named LECTURE in current dir (recursively)
+find . -type f | xargs grep -i SQL // finds all files in current dir (recursively) that contain text 'SQL'
+```
+
+## Checking and changing ownership - example
+```
+$ ls -al
+total 24
+drwxr-xr-x   6 kbrumer  staff   204 May 24 15:34 .
+drwxr-xr-x  37 kbrumer  staff  1258 May 24 15:31 ..
+-rw-r--r--   1 kbrumer  staff  4683 May 24 15:34 LECTURE.md
+-rw-r--r--   1 kbrumer  staff   716 May 10 14:30 README.md
+drwxr-xr-x   7 kbrumer  staff   238 May 24 15:31 demo
+drwxr-xr-x   6 kbrumer  staff   204 May 10 14:30 screenshots
+ABBBCCCDDD     EE       FF       GG              HH  
+
+A - indicates file (-), directory (d) or symbolic link (l)
+B - read, write and execute permissions on the file for the owner
++C - read, write and execute permissions on the file for the group
+D - read, write and execute permissions on the file for everyone
+E - owner
+F - group
+G - file size in bytes (use ls -h to get a more readable)
+H - file name
+```
+
+## Unix permissions 
   read, write, execute (rwx)
   owner, group, everyone
 
 ```
-  chown -R
-  chmod +x
+  chown -R kbrumer:staff demo // changes the ownership of the demo dir (recusrively) to owner kbrumer, group staff
+  chmod +x test.sh // makes the test.sh file executable
 ```
-  
 
-# Client / Server
+# Learning Objectives
 
-The client–server model is a distributed application structure that partitions tasks or workloads between the providers of a resource or service, called servers, and service requesters, called clients.
-
-
-# IP, DNS and port
-
-An Internet Protocol address (IP address) is a numerical label assigned to each device
-
-The Domain Name System (DNS) is a hierarchical decentralized naming system for computers, services, or any resource connected to the Internet or a private network. It associates various information with domain names assigned to each of the participating entities.
-
-In computer networking, a port is an endpoint of communication in an operating system.
-
-Examples include:
-
-21: File Transfer Protocol (FTP)
-22: Secure Shell (SSH)
-23: Telnet remote login service
-25: Simple Mail Transfer Protocol (SMTP)
-53: Domain Name System (DNS) service
-80: Hypertext Transfer Protocol (HTTP) used in the World Wide Web
-110: Post Office Protocol (POP3)
-119: Network News Transfer Protocol (NNTP)
-123: Network Time Protocol (NTP)
-143: Internet Message Access Protocol (IMAP)
-161: Simple Network Management Protocol (SNMP)
-194: Internet Relay Chat (IRC)
-443: HTTP Secure (HTTPS)
-
-0 - 1023 system ports (need to be root)
-1024 through 49151 : registered ports
-49152 through 65535 dynamic / private ports
-
-An IP and a port willl uniquely identify a server. ports can only be bound once. Only one IP can exist on any network. 
-
-psql -U postgres -h 127.0.0.1 -p 5432
+1. Understanding the concept of a relational database.
+2. How to create and drop tables.
+3. How to insert records.
+4. How to select records.
+5. How to update records.
+6. How to delete records.
+7. Exposure to formation of more advanced SQL queries.
+8. Knowledge of how to interact with WebSQL in the browser.
+9. Ability to interact with Web SQL using JavaScript.
 
 
+# Lecture
+
+## Slides
+
+```
+DROP TABLE articles;
+
+CREATE TABLE articles(
+	id INTEGER PRIMARY KEY, 
+	title VARCHAR(50), 
+	author VARCHAR(50), 
+	markdown TEXT, 
+	publishedOn DATETIME );
+	
+	
+INSERT INTO articles (title, author, markdown, publishedOn)VALUES ('Bacon Ipsum', 'Kevin Bacon', '# hickory smoked', '2012-12-25');
+
+INSERT INTO articles (title, author, markdown, publishedOn)VALUES ('Return of Bacon Ipsum', 'Kevin Bacon', '# hickory smoked', '2014-12-25');
+
+INSERT INTO articles (title, author, markdown, publishedOn)VALUES ('Revenge of Bacon Ipsum', 'Kevin Bacron', '# hickory smoked', '2015-12-25');
+
+  SELECT title, author, publishedOn    FROM articles   WHERE publishedOn 
+ BETWEEN '2015-01-01' AND '2015-12-31' 
+   ORDER BY publishedOn DESC;
+
+UPDATE articles SET author = 'Kevin Bacon' WHERE author = 'Keven Bacron';
+
+DELETE FROM articles WHERE author = 'Keven Bacron';
+	
+```
+
+```
+webDB.execute (	[ 
+		{ 
+		  sql: 'INSERT INTO articles (title, author, markdown, publishedOn) VALUES (?, ?, ?, ?);',		  data: ['Bacon Ipsum the Fourth', 'Kevin Bacron', '# hickory smoked', '2012-12-25']
+		}	],function(rows){ console.table(rows); });
+
+
+webDB.execute (	[ 
+		{ 
+		  sql: 'UPDATE articles SET author = ? WHERE author = ? ;',		  data: ['Kevin Bacon', 'Keven Bacron']
+		}	],function(rows){ console.table(rows); });
 
 
 
+webDB.execute (	[ 
+		{ 
+		  sql: 'SELECT * FROM articles;',		  data: [1]
+		}	],function(rows){ console.table(rows); });
+```
 
-## Databases (relational) RDBMS
+## Databases
 
- relational database management system 
+RDBMS: Relational database management system 
 
+[Relational Model](https://en.wikipedia.org/wiki/Relational_model)
 
 PostgreSQL, SQLite, MySql, MSSQL
 
-In computer science, ACID (Atomicity, Consistency, Isolation, Durability) is a set of properties that guarantee that database transactions are processed concurrently. In the context of databases, a single logical operation on the data is called a transaction. For example, a transfer of funds from one bank account to another, even involving multiple changes such as debiting one account and crediting another, is a single transaction.
+# Demo
 
-Atomicity[edit]
-Main article: Atomicity (database systems)
-Atomicity requires that each transaction be "all or nothing": if one part of the transaction fails, then the entire transaction fails, and the database state is left unchanged. An atomic system must guarantee atomicity in each and every situation, including power failures, errors, and crashes. To the outside world, a committed transaction appears (by its effects on the database) to be indivisible ("atomic"), and an aborted transaction does not happen.
+## Demo One
 
-Consistency[edit]
-Main article: Consistency (database systems)
-The consistency property ensures that any transaction will bring the database from one valid state to another. Any data written to the database must be valid according to all defined rules, including constraints, cascades, triggers, and any combination thereof. This does not guarantee correctness of the transaction in all ways the application programmer might have wanted (that is the responsibility of application-level code) but merely that any programming errors cannot result in the violation of any defined rules.
+1. Add the following to PostgreSQL
+2. Demonstrate `SELECT`, `INSERT`, `UPDATE`, `DELETE` and `JOIN`
 
-Isolation[edit]
-Main article: Isolation (database systems)
-The isolation property ensures that the concurrent execution of transactions results in a system state that would be obtained if transactions were executed serially, i.e., one after the other. Providing isolation is the main goal of concurrency control. Depending on the concurrency control method (i.e., if it uses strict - as opposed to relaxed - serializability), the effects of an incomplete transaction might not even be visible to another transaction.
+```
+/*
+from https://github.com/b4oshany/school
+*/
 
-Durability[edit]
-Main article: Durability (database systems)
-The durability property ensures that once a transaction has been committed, it will remain so, even in the event of power loss, crashes, or errors. In a relational database, for instance, once a group of SQL statements execute, the results need to be stored permanently (even if the database crashes immediately thereafter). To defend against power loss, transactions (or their effects) must be recorded in a non-volatile memory.
+DROP TABLE IF EXISTS courses;
+CREATE TABLE courses (
+  id INT NOT NULL PRIMARY KEY,
+  name VARCHAR(32) DEFAULT NULL,
+  teacher_id INT NOT NULL
+);
+
+INSERT INTO courses VALUES
+(10001, 'Computer Science 142', 1234),
+(10002, 'Computer Science 143', 5678),
+(10003, 'Computer Science 190M', 9012),
+(10004, 'Informatics 100', 1234);
+
+DROP TABLE IF EXISTS grades;
+CREATE TABLE grades (
+  student_id INT NOT NULL,
+  course_id INT NOT NULL,
+  grade varchar(2) DEFAULT NULL
+);
+
+INSERT INTO grades VALUES
+(123, 10001, 'B-'),
+(123, 10002, 'C'),
+(456, 10001, 'B+'),
+(888, 10002, 'A+'),
+(888, 10003, 'A+'),
+(404, 10004, 'D+'),
+(404, 10002, 'B'),
+(456, 10002, 'D-');
+
+DROP TABLE IF EXISTS students;
+CREATE TABLE students (
+  id INT NOT NULL PRIMARY KEY,
+  name VARCHAR(32) DEFAULT NULL,
+  email VARCHAR(32) DEFAULT NULL,
+  password VARCHAR(16) DEFAULT NULL
+);
+
+INSERT INTO students VALUES
+(123, 'Bart', 'bart@fox.com', 'bartman'),
+(404, 'Ralph', 'ralph@fox.com', 'catfood'),
+(456, 'Milhouse', 'milhouse@fox.com', 'fallout'),
+(888, 'Lisa', 'lisa@fox.com', 'vegan');
+
+DROP TABLE IF EXISTS teachers;
+CREATE TABLE teachers (
+  id INT NOT NULL PRIMARY KEY,
+  name VARCHAR(32) DEFAULT NULL
+);
+
+INSERT INTO teachers VALUES
+(1234, 'Krabappel'),
+(5678, 'Hoover'),
+(9012, 'Stepp');
+```
+
+# Live Coding
+
+# Questions?
+
+
+
+
+
+  
+
+
+
+
+
+

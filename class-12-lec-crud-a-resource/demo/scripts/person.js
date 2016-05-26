@@ -4,10 +4,17 @@
     // of `opts` will be assigned as properies of the newly created article object.
     Object.keys(opts).forEach(function(e, index, keys) {
       this[e] = opts[e];
-    },this);
+    }, this);
+    this.dob = new Date(this.dob);
   }
 
   Person.all = [];
+
+  Person.initPage = function() {
+    Person.all.forEach(function(person){
+     $('#people').append(person.toHtml())
+    });
+  }
 
   Person.prototype.toHtml = function() {
     var template = Handlebars.compile($('#person-template').text());
@@ -18,9 +25,10 @@
   Person.createTable = function(callback) {
     webDB.execute(
       // what SQL command do we run here inside these quotes?
-      'CREATE TABLE IF NOT EXISTS person (' +
+      'CREATE TABLE IF NOT EXISTS people (' +
           'id INTEGER PRIMARY KEY, ' +
           'first VARCHAR(255) NOT NULL, ' +
+          'middle VARCHAR(255), ' +
           'last VARCHAR(255) NOT NULL, ' +
           'dob DATETIME, ' +
           'bio TEXT NOT NULL);',
@@ -42,13 +50,15 @@
 
   // DONE: Insert an article instance into the database:
   Person.prototype.insertRecord = function(callback) {
-    webDB.execute(
-      [
-        {
-        }
-      ],
-      callback
-    );
+    console.log("******** insert Record *******");
+    webDB.execute (
+        [
+            {
+              sql: 'INSERT INTO people (id, first, middle, last, dob, bio) VALUES (?, ?, ?, ?, ?, ?);',
+              data: [this.id, this.first, this.middle, this.last, this.dob, this.bio]
+            }
+        ],
+    callback);
   };
 
   // DONE: Refactor to expect the raw data from the database, rather than localStorage.
@@ -59,8 +69,24 @@
   };
 
   Person.fetchAll = function(callback) {
-
-    // load from sql file
+    webDB.execute('SELECT * FROM people', function(rows){
+      if (rows.length !== 0){
+        console.log(rows);
+        Person.loadAll(rows);
+        callback();
+      } else {
+        $.getJSON('./data/people.json', function(rawData){
+          console.log('why it');
+          var people = rawData.map(function(item){
+            var person = new Person(item);
+            person.insertRecord();
+            return person;
+          });
+          Person.loadAll(people);
+          callback();
+        });
+      }
+    });
   };
 
 

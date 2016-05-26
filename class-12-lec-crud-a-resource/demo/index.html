@@ -13,14 +13,12 @@
     <script id="person-template" type="text/x-handlebars-template">
       <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
         <header>
-          <h1>{{title}}</h1>
+          <h1>{{first}} {{middle}} {{last}}</h1>
           <div class="byline">
-            By <address><a href="{{authorUrl}}">{{author}}</a></address>
-            {{publishStatus}}
+            {{dob}}
           </div>
         </header>
-        <section class="article-body">{{{body}}}</section>
-        <a href="#" class="read-on">Read on &rarr;</a>
+        <section class="article-body">{{{bio}}}</section>
       </article>
     </script>
   </head>
@@ -60,7 +58,7 @@
     <script>
       // DONE: Ensure that a database table for articles exists, every time we load the page.
       Person.createTable();
-      Person.fetchAll(articleView.initIndexPage);
+      Person.fetchAll(Person.initPage);
     </script>
   </body>
 </html>
