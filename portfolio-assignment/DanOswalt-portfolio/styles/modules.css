@@ -82,6 +82,21 @@
   cursor: pointer;
 }
 
+#site-footer {
+  vertical-align: middle;
+  font-size: 80%;
+}
+
+#site-footer ul {
+  width: 100%;
+}
+
+#site-footer li {
+  margin: 0 2%;
+  margin-top: 20px;
+}
+
+
 /* when width is less than 500 */
 
 @media all and (max-width: 499px) {

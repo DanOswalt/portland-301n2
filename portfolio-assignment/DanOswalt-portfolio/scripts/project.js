@@ -15,12 +15,6 @@
     this.screenshot = opts.screenshot;
   }
 
-  // Project.prototype.toHtml = function() {
-  //   var appTemplate = $('#project-template').html();
-  //   var compileTemplate = Handlebars.compile(appTemplate);
-  //   return compileTemplate(this);
-  // };
-
   Handlebars.registerHelper('daysAgo', function(person) {
     return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
   });
@@ -37,6 +31,7 @@
 
     init : function() {
       var self = this;
+      var randomLetter = self.getRandomLetter();
 
       if(localStorage.data){
         self.loadFromLocalStorage('data');
@@ -53,10 +48,11 @@
       }
 
       self.loadFooterFun({
-        copyright : '&copy; ' + new Date().getFullYear() + ' Dan Oswalt',
+        copyrightYear : new Date().getFullYear(),
         projectCount : self.data.length,
         last30DaysCount : self.getLast30DaysCount(),
-        randomLetterCount : self.getRandomLetterCountFromProjects(self.getRandomLetter())
+        randomLetter: randomLetter,
+        randomLetterCount : self.getRandomLetterCountFromProjects(randomLetter)
       });
 
     },
