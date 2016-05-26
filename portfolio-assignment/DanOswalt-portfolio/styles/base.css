@@ -2,6 +2,15 @@
  * Base rules
  **/
 
+ /*almost black:     #010101
+   red:              #AC1603
+   red-tinted white: #E8E2CC
+ */
+
+html, body {
+   height: 100%;
+}
+
 body {
   background-color: #010101;
   -webkit-box-sizing: border-box;
@@ -55,6 +64,21 @@ textarea {
  * Layout rules
  **/
 
+.page-wrap {
+  min-height: 100%;
+  margin-bottom: -100px;
+}
+
+footer {
+  background-color: #AC1603;
+  color: #E8E2CC;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+}
+
 #title-headline {
   display: inline-block;
   padding: 0;
@@ -96,10 +120,6 @@ textarea {
 
 #about img {
   margin: 0 auto;
-}
-
-.container {
-  max-width: 100%;
 }
 
 /* when width is less than 500 */

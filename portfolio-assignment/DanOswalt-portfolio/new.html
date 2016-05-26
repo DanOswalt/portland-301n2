@@ -31,6 +31,13 @@
       </div>
     </script>
 
+    <!-- Handlebars Footer Template -->
+    <script id='footer-template' type="text/x-handlebars-template">
+      <ul id='footer-items'>
+        <li>{{copyright}}</li><!--&copy; 2016 Dan Oswalt-->
+      </ul>
+    </script>
+
     <main>
       <div id='form-and-preview-container'>
         <section id='new-project-form-module'>
@@ -61,22 +68,24 @@
           <hr>
           <h2>Preview:</h2>
           <hr>
-
-          <!-- Project-views load here -->
-          <section id='project-preview'>
-
-          </section>
-          
           <section id="project-export">
             <label>
               Copy JSON or save to local storage
               <input type="text" readonly id="project-json" />
-              <div id="new-project-submit">save</div>
+              <div id="new-project-submit" class='btn'>save</div>
+              <a href='index.html'><div id="go-home" class='btn'>home</div></a>
             </label>
           </section>
+          <h2 class='save-msg'></h2>
+          <!-- Project-views load here -->
+          <section id='project-preview'>
 
+          </section>
         </aside>
       </div>
+      
+      <footer id='site-footer'>
+      </footer>
 
     </main>
   </body>

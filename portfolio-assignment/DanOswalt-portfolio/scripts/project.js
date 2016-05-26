@@ -1,4 +1,4 @@
-$(function() {
+(function() {
 
   /*****
   * Project
@@ -15,11 +15,11 @@ $(function() {
     this.screenshot = opts.screenshot;
   }
 
-  Project.prototype.toHtml = function() {
-    var appTemplate = $('#project-template').html();
-    var compileTemplate = Handlebars.compile(appTemplate);
-    return compileTemplate(this);
-  };
+  // Project.prototype.toHtml = function() {
+  //   var appTemplate = $('#project-template').html();
+  //   var compileTemplate = Handlebars.compile(appTemplate);
+  //   return compileTemplate(this);
+  // };
 
   Handlebars.registerHelper('daysAgo', function(person) {
     return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
@@ -36,7 +36,6 @@ $(function() {
      ***/
 
     init : function() {
-
       var self = this;
 
       if(localStorage.data){
@@ -52,6 +51,53 @@ $(function() {
             self.data = [];
           });
       }
+
+      self.loadFooterFun({
+        copyright : '&copy; ' + new Date().getFullYear() + ' Dan Oswalt',
+        projectCount : self.data.length,
+        last30DaysCount : self.getLast30DaysCount(),
+        randomLetterCount : self.getRandomLetterCountFromProjects(self.getRandomLetter())
+      });
+
+    },
+
+    loadFooterFun : function(footerData) {
+      var html = ProjectModule.compileHandlebarsTemplate(footerData, '#footer-template');
+      ViewHandler.attachHtmlToParent('#site-footer', html);
+    },
+
+    getLast30DaysCount : function() {
+      return this.data.map(function(project){
+        return project.publishedOn;
+      })
+      .filter(this.publishedInLast30Days)
+      .length;
+    },
+
+    publishedInLast30Days : function (dateString) {
+      return parseInt((new Date() - new Date(dateString)) / 1000 / 60 / 60 / 24) <= 30;
+    },
+
+    getRandomLetter : function () {
+      var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+      return alphabet[Math.floor(Math.random() * 26)];
+    },
+
+    getLetterCount : function(letter, str) {
+      var regex = new RegExp('[' + letter + letter.toUpperCase() + ']', 'g');
+      var matches = str.match(regex) || [];
+      return matches.length;
+    },
+
+    getRandomLetterCountFromProjects : function(letter) {
+      var self = this;
+      var str = self.data.reduce( function(total, project) {
+        total += project.title || '';
+        total += project.description || '';
+        total += project.details || '';
+        return total;
+      } , '');
+      return self.getLetterCount(letter, str);
     },
 
     /*******
@@ -65,10 +111,17 @@ $(function() {
       });
 
       this.data.forEach(function(projectData) {
-        var newProject = new Project(projectData);
-        $('#projects-module').append(newProject.toHtml());
+        var project = new Project(projectData);
+        var html = ProjectModule.compileHandlebarsTemplate(project, '#project-template');
+        ViewHandler.attachHtmlToParent('#projects-module', html);
       });
 
+    },
+
+    compileHandlebarsTemplate : function(obj, templateElementId) {
+      var appTemplate = $(templateElementId).html();
+      var compileTemplate = Handlebars.compile(appTemplate);
+      return compileTemplate(obj);
     },
 
     saveToLocalStorage : function(data) {
@@ -87,9 +140,9 @@ $(function() {
     }
   };
 
-  /***
-   * ViewHandler
-   **/
+/***
+ * ViewHandler
+ **/
 
   var ViewHandler = {
 
@@ -120,8 +173,12 @@ $(function() {
       });
     },
 
+    attachHtmlToParent : function(parentSelector, html) {
+      $(parentSelector).append(html);
+    },
+
     createProjectFromForm : function() {
-      var project;
+      var project, html;
 
       $('#project-preview').empty();
       project = new Project({
@@ -135,31 +192,32 @@ $(function() {
         screenshot: ''
       });
 
-      $('#project-preview').append(project.toHtml());
+      html = ProjectModule.compileHandlebarsTemplate(project, '#project-template');
+      ViewHandler.attachHtmlToParent('#project-preview', html);
       $('#project-json').val(JSON.stringify(project));
     },
 
     handleNewProjectSubmit : function() {
       var self = this;
-      $('project-preview').empty();
 
       $('#new-project-submit').on('click', function(){
         if(self.formIsNotEmpty()) {
           var newProject = JSON.parse($('#project-json').val());
           ProjectModule.data.push(newProject);
           ProjectModule.saveToLocalStorage(ProjectModule.data);
-          console.log(newProject);
-          console.log(ProjectModule.data);
           self.clearInputFields();
+          $('#project-preview').empty();
+          ViewHandler.showSaveMessage('Saved!');
         } else {
-          // $('#project-export')
-          //   .after()
-          //   .html('<h2 class="msg">Form is empty!</h2>')
-          //   .fadeOut(500);
-
+          // $('.save-msg').show().html('<h2 class="msg">Form is empty!</h2>').fadeOut(800);
+          ViewHandler.showSaveMessage('Form is empty!');
           console.log('form is empty!');
         }
       });
+    },
+
+    showSaveMessage : function(msg) {
+      $('.save-msg').show().html('<h2 class="msg">' + msg + '</h2>').fadeOut(800);
     },
 
     clearInputFields : function() {
@@ -186,4 +244,4 @@ $(function() {
   ProjectModule.init();
   ViewHandler.init();
 
-});
+})();

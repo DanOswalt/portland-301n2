@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dan Oswalt</title>
     <link rel="stylesheet" href="vendors/styles/normalize.css">
-    <link rel="stylesheet" href="vendors/styles/skeleton.css">
     <link href='https://fonts.googleapis.com/css?family=Poiret+One|Droid+Serif' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/modules.css">
@@ -32,43 +31,56 @@
       </div>
     </script>
 
+    <!-- Handlebars Footer Template -->
+    <script id='footer-template' type="text/x-handlebars-template">
+      <ul id='footer-items'>
+        <li>{{copyright}}</li><!--&copy; 2016 Dan Oswalt-->
+        <li>{{projectCount}}</li>
+        <li>{{last30DaysCount}}</li>
+        <li>{{randomLetterCount}}</li>
+      </ul>
+    </script>
+
   </head>
 
   <body>
     <main>
-      <header>
-        <h1 id='title-headline'>Dan Oswalt</h1>
-        <nav id='nav-links'>
-          <ul>
-            <a href=''><li class="tab" data-content="projects-module">Home</li><a>
-            <a href=''><li class="tab" data-content="about">About</li><a>
-            <a href='https://github.com/DanOswalt' target="_blank" ><li>GitHub</li><a>
-            <a href='' target="_blank" ><li>Twitter</li><a>
-            <a href='' target="_blank" ><li>LinkedIn</li><a>
-          </ul>
-        </nav>
-      </header>
+      <!-- 'page wrap' is for the css-tricks sticky footer solution -->
+      <div class='page-wrap'>
+        <header>
+          <h1 id='title-headline'>Dan Oswalt</h1>
+          <nav id='nav-links'>
+            <ul>
+              <a href=''><li class="tab" data-content="projects-module">Home</li><a>
+              <a href=''><li class="tab" data-content="about">About</li><a>
+              <a href='https://github.com/DanOswalt' target="_blank" ><li>GitHub</li><a>
+              <a href='' target="_blank" ><li>Twitter</li><a>
+              <a href='' target="_blank" ><li>LinkedIn</li><a>
+            </ul>
+          </nav>
+        </header>
 
-      <!-- Project-views load here -->
-      <div class="container">
-        <div class = 'row'>
-          <section id='projects-module' class='tab-view'>
+        <!-- Project-views load here -->
+        <div class="container">
+          <div class = 'row'>
+            <section id='projects-module' class='tab-view'>
 
-          </section>
+            </section>
+          </div>
         </div>
-      </div>
 
-      <!-- about tab content -->
-      <section id='about' class='tab-view'>
-        <div class='about-container'>
-          <img src='img/profilepic.jpeg'>
-          <p>Some info about me!</p>
-          <p>Fascinating information Fascinating information Fascinating information Fascinating information Fascinating information  </p>
-        </div>
-      </section>
+        <!-- about tab content -->
+        <section id='about' class='tab-view'>
+          <div class='about-container'>
+            <img src='img/profilepic.jpeg'>
+            <p>Some info about me!</p>
+            <p>Fascinating information Fascinating information Fascinating information Fascinating information Fascinating information  </p>
+          </div>
+        </section>
+      </div><!-- end page wrap -->
 
-      <footer>
-      &copy; 2016 Dan Oswalt <!--want this to be sticky-->
+      <!-- Dynamic foot loads here -->
+      <footer id='site-footer'>
       </footer>
 
     </main>
