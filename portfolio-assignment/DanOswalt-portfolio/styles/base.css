@@ -69,14 +69,14 @@ textarea {
   margin-bottom: -100px;
 }
 
-footer {
-  background-color: #AC1603;
-  color: #E8E2CC;
+header.title-header {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
-  height: 50px;
+  background-color: #010101;
   width: 100%;
+  padding-bottom: 30px;
+  z-index: 1;
 }
 
 #title-headline {
@@ -94,7 +94,8 @@ footer {
 
 #nav-links li {
   background-color: #AC1603;
-  padding: 8px;
+  font-size: 90%;
+  padding: 6px;
 }
 
 #nav-links li:hover {
@@ -135,6 +136,10 @@ footer {
     max-width: 40%;
   }
 
+  .page-wrap {
+    margin-top: 250px;
+  }
+
 }
 
 /* when width is more than 500 */
@@ -148,5 +153,9 @@ footer {
 
   #about img {
     max-width: 20%;
+  }
+
+  .page-wrap {
+    margin-top: 200px;
   }
 }

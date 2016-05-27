@@ -34,10 +34,10 @@
     <!-- Handlebars Footer Template -->
     <script id='footer-template' type="text/x-handlebars-template">
       <ul id='footer-items'>
-        <li>Projects Listed: {{projectCount}}</li>
-        <li>Published This Month: {{last30DaysCount}}</li>
-        <li>Occurences of letter '{{randomLetter}}'</code> in project descriptions: {{randomLetterCount}}</li>
-        <li>&copy; {{copyrightYear}} Dan Oswalt</li>
+        <li>&copy; {{copyrightYear}}<span class=footer-color> Dan Oswalt</span></li>
+        <li>Projects Listed: <span class=footer-color>{{projectCount}}</span></li>
+        <li>Published This Month: <span class=footer-color>{{last30DaysCount}}</span></li>
+        <li>Occurences of letter <span class=footer-color>'{{randomLetter}}'</span> in project descriptions: <span class=footer-color>{{randomLetterCount}}</span></li>
       </ul>
     </script>
 
@@ -47,7 +47,7 @@
     <main>
       <!-- 'page wrap' is for the css-tricks sticky footer solution -->
       <div class='page-wrap'>
-        <header>
+        <header class='title-header'>
           <h1 id='title-headline'>Dan Oswalt</h1>
           <nav id='nav-links'>
             <ul>
@@ -61,13 +61,9 @@
         </header>
 
         <!-- Project-views load here -->
-        <div class="container">
-          <div class = 'row'>
-            <section id='projects-module' class='tab-view'>
+        <section id='projects-module' class='tab-view'>
 
-            </section>
-          </div>
-        </div>
+        </section>
 
         <!-- about tab content -->
         <section id='about' class='tab-view'>
