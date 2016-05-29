@@ -86,7 +86,7 @@
   };
 
   Book.fetchAll = function(callback) {
-    webDB.execute('DELETE FROM books', function(rows){});
+    // webDB.execute('DELETE FROM books', function(rows){});
     webDB.execute('SELECT * FROM books LIMIT 1', function(rows){
       if (rows.length !== 0){
         Book.loadPage(callback);

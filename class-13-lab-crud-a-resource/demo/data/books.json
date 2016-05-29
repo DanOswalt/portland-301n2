@@ -888,12 +888,6 @@
     "year": 1932
   },
   {
-    "id": 148,
-    "title": "First Folio",
-    "author": "William Shakespeare",
-    "year": 1623
-  },
-  {
     "id": 149,
     "title": "Twenty Thousand Leagues Under the Sea",
     "author": "Jules Verne",
@@ -1174,12 +1168,6 @@
     "title": "Rabbit Redux",
     "author": "John Updike",
     "year": 1971
-  },
-  {
-    "id": 195,
-    "title": "U.S.A. Trilogy",
-    "author": "John Dos Passos",
-    "year": 1938
   },
   {
     "id": 196,
@@ -11562,7 +11550,7 @@
     "year": 1951
   },
   {
-    id: 1926,
+    "id": 1926,
     "title": "A Crown of Feathers and Other Stories",
     "author": "Isaac Bashevis Singer",
     "year": 1973
@@ -11578,5 +11566,5 @@
     "title": "Dangerous Laughter",
     "author": "Steven Millhauser",
     "year": 2008
-  },
+  }
 ]

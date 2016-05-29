@@ -18,7 +18,7 @@
     }
   </style>
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-  <!-- <link href='https://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'> -->
+
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="styles/base-normalize.css">
@@ -35,10 +35,10 @@
           <header>
             <h2>{{title}}</h2>
               <div class="contributors">
-                  By {{contributor}}
-                  <time pubdate datetime="2000-01-01" title={{postDate}}  >{{publishStatus}}</time>
+                  <a href="{{contributorUrl}}">By {{contributor}}</a>
+                  <time pubdate datetime="2000-01-01" title={{postDate}}>{{publishStatus}}</time>
                     <div>
-                    <a href="{{contributorUrl}}"><img src="{{imgSrc}}" alt="{{imgAlt}}"></a>
+                    <img src="{{imgSrc}}" alt="{{imgAlt}}">
                   </div>
               </div>
           </header>
@@ -49,7 +49,15 @@
         </article>
       </div>
   </script>
+
+  <script id="anagram-template" type="text/x-handlebars-template">
+            <p><strong>Scrambled Name:</strong> {{hbAnagram}}</p>
+            <p>
+              Brought to you by string split into array, Fisher-Yates shuffled and reduced.
+            </p>
+  </script>
 </head>
+
 <body>
   <div class="container">
     <div class="header">
@@ -71,9 +79,10 @@
         </section>
       </div>
     <footer id="about" class="page-content">
-          <p>
+          <p id="anagram">
             James is a junior developer who attended Code Fellows&trade; learning HTML, CSS, JavaScript, JQuery, Handlebars, Bootstrap and responsive design. In his previous life he was a market and competitive intelligence analyst, helping teams understand market landscapes, customers and competitors. He loves hiking the Gorge, craft beers and RipCity.
           </p>
+
         <div class="links">
           <a href="https://twitter.com/JamesC_Smith" target="_blank"><img src="imgAssets\twitter.svg" alt="JamesC_Smith Twitter" class="icon" /></a>
           <a href="https://www.linkedin.com/in/jamescsmithpdx" target="_blank"><img src="imgAssets\linkedin.svg" alt="James C Smith LinkedIn" class="icon" /></a>
@@ -85,9 +94,9 @@
     <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
-    <!-- <script src="scripts/portfolioProjects.js"></script> -->
     <script src="scripts/main.js"></script>
     <script src="scripts/projectView.js"></script>
-    <script>Project.fetchAll();</script>
+    <script src="scripts/jquery.matchHeight-min.js" type="text/javascript"></script>
+    <script>Project.fetchAll(projectView.initIndexPage);</script>
 </body>
 </html>

@@ -18,6 +18,6 @@
     "ghPagesUrl":  "http://seanloughran.github.io/market-analysis-app/",
     "linkTitle":   "Market Analysis",
     "image":       "Images/marketanalysis.png",
-    /*"description": "<p>This was an app designed to show a user 3 different products which they could vote on.</p><p>After voting, the user would be shown three new products, different from the last three.</p><p>After voting 15 times the user is shown their total votes for selected products.</p><p>Gotta be honest, there is a couple thing on this project I am not entirely sure what is going on... in short, not my finest work.</p>"*/
+    "description": "<p>This was an app designed to show a user 3 different products which they could vote on.</p><p>After voting, the user would be shown three new products, different from the last three.</p><p>After voting 15 times the user is shown their total votes for selected products.</p><p>Gotta be honest, there is a couple thing on this project I am not entirely sure what is going on... in short, not my finest work.</p>"
   }
 ]

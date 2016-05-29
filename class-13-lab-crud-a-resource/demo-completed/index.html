@@ -75,7 +75,8 @@
     <script src="/scripts/webdb.js"></script>
     <script src="/scripts/book.js"></script>
     <script>
-      var page = parseInt(new QueryData().page) || 0;
+      debugger
+      var page = parseInt(new QueryData().page) || 1;
       var pageSize = 10;
       // DONE: Ensure that a database table for articles exists, every time we load the page.
       Book.createTable();

@@ -11,7 +11,14 @@
 
   Book.initPage = function() {
     var template = Handlebars.compile($('#book-template').text());
-    var html = template(Book.all);
+    var data = {
+      books: Book.all,
+      page: page,
+      prevPage: page - 1,
+      nextPage: page + 1,
+      hasPrevPage: (page > 1)
+    };
+    var html = template(data);
     $('#books').append(html);
   }
 
@@ -52,6 +59,25 @@
     callback);
   };
 
+  Book.loadPage = function(callback){
+    var limit = pageSize;
+    var offset = (page - 1) * pageSize;
+    webDB.execute(
+      [
+        {
+          'sql' : 'SELECT * FROM books LIMIT ? OFFSET ?',
+          'data': [limit, offset]
+        }
+      ], function(rows){
+        console.table(rows);
+        Book.all = rows.map(function(el){
+          return new Book(el);
+        });
+        callback();
+      });
+
+  }
+
   // DONE: Refactor to expect the raw data from the database, rather than localStorage.
   Book.loadAll = function(rows) {
     Book.all = rows.map(function(ele) {
@@ -62,18 +88,21 @@
   Book.fetchAll = function(callback) {
     webDB.execute('SELECT * FROM books', function(rows){
       if (rows.length !== 0){
-        console.log(rows);
-        Book.loadAll(rows);
-        callback();
+        Book.loadPage(callback);
       } else {
-        $.getJSON('./data/books.json', function(rawData){
-          var books = rawData.map(function(item){
-            var book = new Book(item);
-            book.insertRecord();
-            return book;
-          });
-          Book.loadAll(books);
-          callback();
+        $.ajax({
+          type : 'GET',
+          url: './data/books.json',
+          success: function(rawData){
+            var books = rawData.map(function(item){
+              var book = new Book(item);
+              book.insertRecord();
+              return book;
+            });
+            Book.loadPage(callback);
+          },
+          error: function(xhr, status, error){
+          }
         });
       }
     });

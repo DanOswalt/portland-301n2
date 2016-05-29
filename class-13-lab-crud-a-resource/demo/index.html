@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="styles/modules.css">
 
     <script id="book-template" type="text/x-handlebars-template">
+      <section id="navigation">
+        {{#if hasPrevPage }}
+        <a href="index.html?page={{ prevPage }}"> << Prev </a> |
+        {{/if}}
+        Page {{ page }}
+        <a href="index.html?page={{ nextPage }}"> | Next >> </a>
+      </section>
       <section id="books">
         <table border="1" style="width:100%">
           <tr>
@@ -66,6 +73,9 @@
     <script src="/scripts/webdb.js"></script>
     <script src="/scripts/book.js"></script>
     <script>
+      var pageSize = 25;
+      var page = parseInt(new QueryData().page);
+
       // DONE: Ensure that a database table for articles exists, every time we load the page.
       Book.createTable();
       Book.fetchAll(Book.initPage);
