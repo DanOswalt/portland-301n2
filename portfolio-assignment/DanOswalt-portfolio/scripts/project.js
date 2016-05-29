@@ -80,7 +80,7 @@
     },
 
     getLetterCount : function(letter, str) {
-      var regex = new RegExp('[' + letter + letter.toUpperCase() + ']', 'g');
+      var regex = new RegExp(letter, 'ig');
       var matches = str.match(regex) || [];
       return matches.length;
     },
