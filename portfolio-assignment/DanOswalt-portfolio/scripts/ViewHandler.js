@@ -11,23 +11,20 @@
       self.handleTabClicks();
       self.handleNewProjectSubmit();
       self.handleJSONSelection();
-      self.getTemplate('project-template')
-        .then(function(template){
-          if($('#projects-module').length) {
-            $('#projects-module').append(template);
-          } else {
-            $('#projects-preview').append(template);
-          }
-          self.getTemplate('footer-template')
-          .then(function(template){
-            $('#site-footer').append(template);
-            ProjectModule.init();
-          })
-          .then(function(){
-            // $('#project-template').hide();
-            $('#footer-template').remove();
-          });
+      self.getTemplate('project-template').then(function(template){
+        if($('#projects-module').length) {
+          $('#projects-module').append(template);
+        } else {
+          $('#projects-preview').append(template);
+        }
+        self.getTemplate('footer-template').then(function(template){
+          $('#site-footer').append(template);
+          ProjectModule.init();
+        }).then(function(){
+          $('#project-template').hide();
+          $('#footer-template').remove();
         });
+      });
     },
 
     getTemplate : function(templateId){
