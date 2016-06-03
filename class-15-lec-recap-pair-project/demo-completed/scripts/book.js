@@ -9,34 +9,6 @@
 
   Book.all = [];
 
-  Book.initPage = function() {
-    console.log('inside initPage');
-    var bookData = {
-      books: Book.all
-    };
-
-    var paginatonData = {
-      page: page,
-      hasPrevPage: (page > 1),
-      prevPage: page - 1,
-      nextPage: page + 1
-    };
-
-    getTemplate('pagination', paginatonData, function(html){
-      $('#book-pagination').append(html);
-    }).then(function(){
-      console.log('pagination returned')
-    });
-
-    getTemplate('books', bookData, function(html){
-      $('#books').append(html);
-    }).then(function(){
-        console.log('books are returned');
-    });
-
-
-  }
-
   // DONE: Set up a DB table for articles.
   Book.createTable = function(callback) {
     console.log('inside createTable');

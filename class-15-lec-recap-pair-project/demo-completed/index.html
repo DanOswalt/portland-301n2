@@ -49,6 +49,24 @@
     <!-- <script src="/scripts/person.js"></script> -->
     <script src="/scripts/template.js"></script>
     <script src="/scripts/book.js"></script>
-    <script src="/scripts/book-debug.js"></script>
+    <script src="/scripts/bookView.js"></script>
+    <!-- <script src="/scripts/book-debug.js"></script> -->
+    <script>
+      var page = parseInt(new QueryData().page) || 1;
+      var pageSize = 10;
+      // DONE: Ensure that a database table for articles exists, every time we load the page.
+      console.log('begin calling createTable');
+      Book.createTable();
+      console.log('end calling createTable');
+      console.log('begin calling fetchAll');
+      console.log('page=', page);
+      Book.fetchAll(function(){
+        BookView.initPage(Book.all, page)  
+      });
+      // Book.fetchAll(function() {
+      //   BookView.initPage(Book.all, page);
+      // });
+      console.log('end calling fetchAll');
+    </script>
   </body>
 </html>

@@ -6,7 +6,7 @@
 // Object.defineProperty and such default [[Enumerable]] to false). Enumerable properties show up in `for...in`
 // loops unless the property's name is a Symbol.
 
-var book = new Book({});
+var book = new Book({'id' : 17, 'title': 'Heart of Darkness'});
 console.log('book own enumerables=', SimplePropertyRetriever.getOwnEnumerables(book)); // none
 console.log('book prototype enumerables=', SimplePropertyRetriever.getPrototypeEnumerables(book)); // check !
 

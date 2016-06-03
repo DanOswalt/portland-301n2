@@ -3,6 +3,7 @@
     // DONE: Convert property assignment to Functional Programming style. Now, ALL properties
     // of `opts` will be assigned as properies of the newly created article object.
     Object.keys(opts).forEach(function(e, index, keys) {
+      console.log('*** adding prop ' + opts[e] + ' to book with key ' + e);
       this[e] = opts[e];
     }, this);
   }
@@ -92,7 +93,7 @@
         return new Book(ele);
       });
       callback();
-    });    
+    });
   };
 
   Book.fetchAll = function(callback) {
