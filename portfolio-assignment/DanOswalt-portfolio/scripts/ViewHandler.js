@@ -35,9 +35,6 @@
 
     compileHandlebarsTemplate : function(obj, templateElementId) {
       var appTemplate = $(templateElementId).html();
-      console.log(obj);
-      console.log(templateElementId);
-      console.log(appTemplate);
       var compileTemplate = Handlebars.compile(appTemplate);
       return compileTemplate(obj);
     },
