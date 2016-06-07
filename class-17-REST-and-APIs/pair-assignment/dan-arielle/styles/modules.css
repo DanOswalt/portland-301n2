@@ -58,6 +58,21 @@
   color: #ccc;
 }
 
+/* 'About' module */
+
+#about {
+  text-align: center;
+}
+
+#about ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#about li {
+  padding: 5%;
+}
+
 @media only screen and (min-width: 640px) {
   .icon-menu {
     display: none;

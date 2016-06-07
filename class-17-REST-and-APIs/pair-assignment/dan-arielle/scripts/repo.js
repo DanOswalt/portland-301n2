@@ -4,8 +4,22 @@
   repos.all = [];
 
   repos.requestRepos = function(callback) {
-    // TODO: How would you like to fetch your repos? Don't forget to call the callback.
-
+    // D+A: How would you like to fetch your repos? Don't forget to call the callback.
+    $.ajax({
+      url: 'https://api.github.com/user/repos',
+      type: 'GET',
+      headers: {
+        'Authorization': 'token ' + githubToken
+      }
+    })
+    .done(function(data, message, xhr) {
+      repos.all = data;
+      console.log(message);
+    })
+    .fail(function(data, message, xhr) {
+      console.log(message);
+    })
+    .then(callback);
   };
 
   // DONE: Model method that filters the full collection for repos with a particular attribute.

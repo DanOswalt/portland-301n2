@@ -38,6 +38,9 @@
 .icon-power:before {
 	content: "\e90a";
 }
+.icon-power:after {
+	content: "\e90a";
+}
 .icon-menu:before {
 	content: "\e902";
 }
