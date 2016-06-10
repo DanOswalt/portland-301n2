@@ -12,6 +12,9 @@
       self.handleNewProjectSubmit();
       self.handleJSONSelection();
       self.getTemplate('project-template').then(function(template){
+        Handlebars.registerHelper('daysAgo', function() {
+          return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
+        });
         if($('#projects-module').length) {
           $('#projects-module').append(template);
         } else {
