@@ -54,12 +54,8 @@
   <script src="scripts/project.js"></script>
   <script src="scripts/ProjectModule.js"></script>
   <script src="scripts/ViewHandler.js"></script>
-  <script src="scripts/repo.js"></script>
   <script src="scripts/githubToken.js"></script>
-  <script>
-    ViewHandler.init();
-    Handlebars.registerHelper('daysAgo', function() {
-      return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
-    });
-  </script>
+  <script src="vendors/scripts/page.js"></script>
+  <script src="scripts/repo.js"></script>
+  <script src="scripts/routes.js"></script>
 </html>
