@@ -6,7 +6,9 @@
   var ViewHandler = {
 
     init : function() {
+      console.log(this);
       var self = this;
+      console.log(self);
       self.initNewProject();
       self.handleTabClicks();
       self.handleNewProjectSubmit();

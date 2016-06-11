@@ -1,5 +1,12 @@
 //Root loads blog
-page('/', ViewHandler.init);
-page('/projects', ProjectModule.init);
+page('/', function() {
+  BlogView.init();
+});
+page('/projects', function() {
+  ProjectModule.init();
+});
+page('/new', function() {
+  NewBlogEntryController.init();
+});
 
-page().start();
+page();
