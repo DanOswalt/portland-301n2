@@ -1,10 +1,10 @@
 (function(module){
 
   /*****
-  * ProjectModule
+  * BlogModule
   ***/
 
-  var ProjectModule = {
+  var BlogModule = {
 
     /*******
      * init loads data either from localstorage or from file
@@ -16,12 +16,12 @@
 
       if(localStorage.data){
         self.loadFromLocalStorage('data');
-        ViewHandler.loadProjects();
+        ViewHandler.loadBlogEntries();
       } else {
-        $.getJSON('data/projectJSON.json')
+        $.getJSON('data/blogentries.json')
           .done(function(json){
             self.data = json.data;
-            ViewHandler.loadProjects();
+            ViewHandler.loadBlogEntries();
             self.saveToLocalStorage(self.data);
           }).fail(function(){
             self.data = [];
@@ -30,17 +30,17 @@
 
       ViewHandler.loadFooterFun({
         copyrightYear : new Date().getFullYear(),
-        projectCount : self.data.length,
+        blogentrycount : self.data.length,
         last30DaysCount : self.getLast30DaysCount(),
         randomLetter: randomLetter,
-        randomLetterCount : self.getRandomLetterCountFromProjects(randomLetter)
+        randomLetterCount : self.getRandomLetterCountFromBlogs(randomLetter)
       });
 
     },
 
     getLast30DaysCount : function() {
-      return this.data.map(function(project){
-        return project.publishedOn;
+      return this.data.map(function(blogEntry){
+        return blogEntry.publishedOn;
       })
       .filter(this.publishedInLast30Days)
       .length;
@@ -61,12 +61,12 @@
       return matches.length;
     },
 
-    getRandomLetterCountFromProjects : function(letter) {
+    getRandomLetterCountFromBlogs : function(letter) {
       var self = this;
       var str = self.data.reduce( function(total, project) {
-        total += project.title || '';
-        total += project.description || '';
-        total += project.details || '';
+        total += blogEntry.title || '';
+        total += blogEntry.description || '';
+        total += blogEntry.details || '';
         return total;
       } , '');
       return self.getLetterCount(letter, str);
@@ -88,6 +88,6 @@
     }
   };
 
-  module.ProjectModule = ProjectModule;
+  module.BlogModule = BlogModule;
 
 })(window);
