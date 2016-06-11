@@ -46,7 +46,7 @@
       $('#projects').append(a.toHtml());
     });
     $('.page-content').hide();
-    $('.jumbotron').fadeTo(15000, 0.0);
+    $('.jumbotron').fadeTo(5000, 0.5);
     projectView.handleMainNav();
     projectView.createTeaser();
   };
