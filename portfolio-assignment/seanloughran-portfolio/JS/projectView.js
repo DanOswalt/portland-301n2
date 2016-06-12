@@ -2,6 +2,8 @@
 
   var projectView = {};
 
+  var render = Handlebars.compile($('#projectTemplate').text());
+
   //Functionality for home and about me tabs.
   projectView.tabNavigation = function() {
     $('nav').on('click','.tab', function(){
@@ -39,12 +41,16 @@
 
 
   projectView.initPrimaryPage = function(){
-    //Goes through project Array and appends them to the 'main' element
-    Project.all.forEach(function(a){
-      $('main').append(a.addProject(a));
-    });
+    $('#projects').empty();
+    //Goes through project Array and appends them to the #projects section element
+    // Project.all.forEach(function(a){
+    //   $('#projects').append(a.addProject(a));
+    // });
+    $('#projects').append(
+      Project.all.map(render)
+    );
 
-    projectView.tabNavigation();
+    //projectView.tabNavigation();
     projectView.showMoreDescription();
   };
 

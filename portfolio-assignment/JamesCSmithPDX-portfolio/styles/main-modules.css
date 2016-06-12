@@ -37,7 +37,8 @@ section.about {
     align-content: space-between;
     background-color: #eee;
     border-radius: 5px;
-    margin-bottom: 3-px
+    margin-bottom: 70px;
+    margin-top: 0;
 }
 .links {
     align-self: stretch;

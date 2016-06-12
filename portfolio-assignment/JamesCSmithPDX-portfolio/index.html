@@ -23,7 +23,7 @@
     <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="stylesheet" href="styles/base-normalize.css">
-    <link rel="stylesheet" href="styles/base-bootstrap.min.css">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/projects-modules.css">
     <link rel="stylesheet" href="styles/main-modules.css">
@@ -72,8 +72,8 @@
             </div>
             <div class="mainNav">
                 <ul class="nav nav-pills topNav">
-                    <li data-section="projects" class="tab"><a href="#">Portfolio</a></li>
-                    <li data-section="about" class="tab"><a href="#">About Me</a></li>
+                    <li data-section="projects" class="tab"><a href="/portfolio">Portfolio</a></li>
+                    <li data-section="about" class="tab"><a href="/about">About Me</a></li>
                 </ul>
             </div>
         </div>
@@ -107,6 +107,7 @@
     <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    <script src="scripts/page.js"></script>
     <script src="scripts/hbsTemplate.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/anagram.js"></script>
@@ -114,9 +115,11 @@
     <script src="scripts/repo.js"></script>
     <script src="scripts/repoView.js"></script>
     <script src="scripts/projectView.js"></script>
-    <script>
-        Project.fetchAll(projectView.initIndexPage);
-    </script>
+    <script src="scripts/projectController.js"></script>
+    <script src="scripts/portfolioController.js"></script>
+    <script src="scripts/aboutController.js"></script>
+    <script src="scripts/routes.js"></script>
+
     <script>
         repos.requestRepos(repoView.index)
     </script>
