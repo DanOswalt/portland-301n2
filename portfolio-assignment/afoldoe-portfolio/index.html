@@ -1,11 +1,13 @@
 <!DOCTYPE>
 <html>
   <head>
-    <meta charset="utf-8">
+   <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Arielle | Web Developer</title>
     <link rel="stylesheet" type="text/css" src="vendor/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" src="vendor/styles/animate.css">
+    <link rel="stylesheet" type="text/css" src="vendor/styles/icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles/layout.css">
     <link rel="stylesheet" type="text/css" href="styles/state.css">
@@ -13,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="styles/modules.css">
     <!-- projects template -->
     <script id="project-template" type="text/x-handlebars-template">
-      <article class="clearfix col-lg-4 text-xs-center" data-category="{{category}}" data-author="{{author}}">
+      <article class="clearfix col-lg-6 text-xs-center" data-category="{{category}}" data-author="{{author}}">
         <header>
           <address><a href="{{projectURL}}"><h1>{{title}}</h1></a></address>
           <div class="byline">
@@ -25,58 +27,159 @@
       </article>
     </script>
     <!-- /projects template -->
+
+    <!-- repos template -->
+    <script id="repo-template" type="text/x-handlebars-template">
+    <li>
+      <a href="{{html_url}}" target="_blank"><h2>{{name}}</h2></a>
+      <p class="icon-power">{{description}}</p>
+      <p class="icon-plus"> {{created_at}}</p>
+      <p class="icon-happy"></p>
+      {{#if watchers_count}}
+        <p>{{watchers_count}} watching this repo</p>
+      {{/if}}
+    </li>
+  </script>
+    <!-- /repos template -->
   </head>
 
   <body>
-    <!-- nav menu -->
-    <nav>
-      <ul class="nav">
-        <li data-content="projects" class=".tab nav-item"><a class="nav-link" href="#projects">PORTFOLIO</a></li>
-        <li data-content="about" class=".tab nav-item"><a class="nav-link" href="#">ABOUT</a></li>
-      </ul>
-    </nav>
-    <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-    <label for="nav-trigger"></label>
-    <!-- nav menu -->
 
-    <div class="site-wrap">
+    <!-- <div class="site-wrap"> -->
       <!-- header -->
-      <section class="container-fluid text-xs-center" id="header">
+      <section class="container-fluid text-xs-center animated fadeIn" id="header">
         <div class="row">
           <header>
-            <!-- <img id="profilePic" src="img/profilepic.jpg"> -->
+            <!-- nav menu -->
+            <nav class="container-fluid">
+              <div clas="row text-xs-center">
+                <!-- <button type="button" class="btn">
+                  <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </button> -->
+                <ul class="list-unstyled">
+                  <a href="/"><li class="btn btn-"><strong>HOME</strong></li></a>
+                  <a href="/projects"><li class="btn btn-"><strong>PORTFOLIO</strong></li></a>
+                  <a href="/skills"><li class="btn"><strong>SKILLS</strong></li></a>
+                  <a href="/about"><li class="btn"><strong>ABOUT</strong></li></a>
+                  <a href="/contact"><li class="btn"><strong>CONTACT</strong></li></a>
+                </ul>
+                <div class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></div>
+              </div>
+            </nav>
+            <!-- nav menu -->
             <h1 class="display-4">
               Arielle Foldoe
-              <small class="text-muted">Front End Developer</small>
+            <small class="text-muted">Front End Developer</small>
             </h1>
+            <i class="fa fa-bicycle"><span></span></i>
             <a href="#projects" class="btn btn--s">View Portfolio</a>
           </header>
         </div>
-        <!-- /header -->
       </section>
-      <!-- projects section -->
-      <section id="projects" class="tab-content container">
-        <div class="container text-xs-center">
-          <div class="row">
-          </div>
-        </div>
-      </section>
-      <!-- /projects section -->
+      <!-- /header -->
 
-      <!-- about -->
-      <section id="about" class="tab-content container-fluid text-xs-center">
+      <!-- main -->
+      <main>
+        <!-- about -->
+        <section id="about" class="tab-content container text-xs-center">
+          <div class="row">
+            <section class="col-md-4">
+              <img src ="img/profile.jpg" id="profilePic">
+            </section>
+            <section class="col-md-8">
+              <h3 class="h3">A Wild ARI appeared!</h3>
+              <ul class="list-unstyled list-group">
+                <li class="list-group-item">Bombing down Clinton St on my bike rain or shine! (Mostly rain)</li>
+                <li class="list-group-item">Holing up at a coffee shop or Powell's and gorging on science fiction, comics, or graphic novels.</li>
+                <li class="list-group-item">Swinging by Ground Kontrol to play Ms Pacman an drink a brewski after a hard day's work.</li>
+              </ul>
+            </section>
+          </div>
+        </section>
+        <!-- /about -->
+        <!-- skills -->
+        <section class="container" id="skills">
+          <div class="row">
+            <section class="col-md-6 text-xs-center" id="skills1">
+              <h3 class="h3">Aaniin! (Hello!)</h3>
+              <p>I'm Arielle: a front-end developer fascinated with JavaScript, awed by CSS, and curious about everything else there is to learn. Dedication to creating web applications scaled to grow with excellent base structure, a deep love of logical puzzles, attention to detail, and a thirst for knowledge fuels my quest to remain up-to-date on modern engineering technologies and approaches.</p>
+            </section>
+            <section class="col-md-2 text-xs-center">
+              <h4 class=" h4">HTML</h4>
+              <ul class="list-unstyled list-group">
+                <li>HTML5</li>
+                <li>Handlebars</li>
+              </ul>
+            </section>
+            <section class="col-md-2 text-xs-center">
+              <h4 class="h4">CSS</h4>
+              <ul class="list-unstyled list-group">
+                <li>Responsive Design</li>
+                <li>Bootstrap</li>
+                <li>SASS</li>
+              </ul>
+            </section>
+            <section class="col-md-2 text-xs-center">
+              <h4 class="h4">JavaScript</h4>
+              <ul class="list-unstyled list-group">
+                <li>Functional and Object-oriented</li>
+                <li>NodeJS</li>
+                <li>AngularJS</li>
+              </ul>
+            </section>
+          </div>
+        </section>
+        <!-- /skills -->
+
+        <!-- projects section -->
+        <section id="projects" class="tab-content container">
+          <div class="container text-xs-center">
+            <div class="row">
+            </div>
+          </div>
+        </section>
+        <!-- /projects section -->
+
+        <!-- repos section -->
+        <section id="repos" class="tab-content container">
+          <div class="container text-xs-center">
+            <div class="row">
+              <ul></ul>
+            </div>
+          </div>
+        </section>
+        <!-- /repos section -->
+
+      <!-- contact -->
+      <section class="container" id="contact">
         <div class="row">
-          <section class="col-xs-12">
-            <h1>You can find me in PDX:</h1>
-            <ul class="list-unstyled list-group">
-              <li class="list-group-item">bombing down Clinton St on my bike rain or shine! (Mostly rain)</li>
-              <li class="list-group-item">Holing up at a coffee shop or Powell's and gorging on science fiction, comics, or graphic novels.</li>
-              <li class="list-group-item">Swinging by Ground Kontrol to play Ms Pacman after a hard day's work.</li>
-            </ul>
+          <section class="col-md-6 text-xs-center" id="contact1">
+            <h3 class="h3">Let's be friends!</h3>
+            <form>
+              <div class="form-group">
+                <label for="forName"><input type="text" class="form-control" id="formName" placeholder="Name"></label>
+              </div>
+              <div class="form-group">
+                <label for="formEmail"><input type="email" class="form-control" id="formEmail" placeholder="Email"></label>
+              </div>
+              <div class="form-group">
+                <label for="formSubject"><input type="text" class="form-control" id="formSubject" placeholder="Subject"></label>
+              </div>
+              <div class="form-group">
+                <label for="formMessage"><textarea type="" class="form-control" id="formMessage" placeholder="Message"></textarea></label>
+              </div>
+              <div class="form-group">
+                <label for="formButton"><button type="button" class="btn btn-default">Warp 9, Engage!</button>
+              </div>
+            </form>
+          </section>
+          <section class="col-md-6 text-xs-center" id="contact2">
+            <p>Need a front-end developer? Wanting to start a side project? Have some questions about my projects? Just want to talk code? Please don't hesitate to contact me! Rarely am I too busy for some good 'ol programming.</p>
           </section>
         </div>
       </section>
-      <!-- /about -->
+      <!-- contact -->
+      <!-- /main -->
 
       <!-- footer -->
       <section class="container-fluid text-xs-center" id="footer">
@@ -90,18 +193,27 @@
         </div>
       </section>
       <!-- /footer -->
-    </div>
+    <!-- </div> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script type="text/javascript" src="scripts/githubToken.js"></script>
+    <script type="text/javascript" src="vendor/scripts/page.js"></script>
+    <script type="text/javascript" src="vendor/scripts/moment.js"></script>
+    <script type="text/javascript" src="server.js"></script>
     <script type="text/javascript" src="vendor/scripts/html5sql.js"></script>
     <script type="text/javascript" src="scripts/webdb.js"></script>
-    <script type="text/javascript" src="scripts/projectView.js"></script>
     <script type="text/javascript" src="scripts/script.js"></script>
-    <script>
-     Project.createTable();
-     Project.fetchAll(projectView.initIndexPage);
-    </script>
+    <script type="text/javascript" src="scripts/projectView.js"></script>
+    <script type="text/javascript" src="scripts/repoView.js"></script>
+    <script type="text/javascript" src="scripts/repos.js"></script>
+    <script type="text/javascript" src="scripts/repoController.js"></script>
+    <script type="text/javascript" src="scripts/homeController.js"></script>
+    <script type="text/javascript" src="scripts/projectController.js"></script>
+    <script type="text/javascript" src="scripts/skillsController.js"></script>
+    <script type="text/javascript" src="scripts/contactController.js"></script>
+    <script type="text/javascript" src="scripts/aboutController.js"></script>
+    <script type="text/javascript" src="scripts/routes.js"></script>
   </body>
 </html>

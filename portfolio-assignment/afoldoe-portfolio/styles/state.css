@@ -1,10 +1,5 @@
-.nav-trigger:checked + label {
-    top: 5rem;
-}
-.nav-trigger:checked ~ .site-wrap {
-    top: 5rem;
-    box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
-}
+
+
 .btn, .btn:link, .btn:visited {
   border-radius: 0.25em;
   border-style: solid;
@@ -32,13 +27,7 @@
   -webkit-transition: background-color 0.3s, color 0.3s, border 0.3s;
   transition: background-color 0.3s, color 0.3s, border 0.3s;
 }
+
 @media only screen and (min-width : 768px) and (max-width : 1400px) {
-  .nav-trigger:checked + label {
-      left: 215px;
-      top: 15px;
-  }
-  .nav-trigger:checked ~ .site-wrap {
-      left: 200px;
-      top: 0px;
-  }
+
 }

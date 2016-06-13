@@ -8,9 +8,13 @@ iframe {
 
 @media only screen and (min-width: 500px) {
 
-.icon-menu{
-    display: none;
+  .icon-menu{
+    visibility: hidden;
   }
+
+/*.icon-menu{
+    display: none;
+  }*/
 
   .navigation ul{
     display: block;

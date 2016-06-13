@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>Nicholle Romero</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/layout.css">
-    <link rel="stylesheet" href="styles/modules.css">
-    <link rel="stylesheet" href="styles/state.css">
-    <link rel="stylesheet" href="styles/theme.css">
+    <link rel="stylesheet" href="Styles/base.css">
+    <link rel="stylesheet" href="Styles/layout.css">
+    <link rel="stylesheet" href="Styles/modules.css">
+    <link rel="stylesheet" href="Styles/state.css">
+    <link rel="stylesheet" href="Styles/theme.css">
     <link rel="stylesheet" href="Styles/skeleton.css">
     <link rel="stylesheet" href="Styles/normalize.css">
+    <link rel="stylesheet" href="Styles/icon.css">
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
     <script id="project-template" type="text/x-handlebars-template">
@@ -30,6 +31,21 @@
       </script>
     </head>
 
+
+    <script id="repo-template" type="text/x-handlebars-template">
+         <li>
+           <a href="{{html_url}}" target="_blank"><h3>{{name}}</h3></a>
+           <p>Description: {{description}}</p>
+           <p>Language: {{language}}</p>
+           <p>Created: {{created_at}}</p>
+           <p>Last updated: {{updated_at}}</p>
+           {{#if watchers_count}}
+             <p>{{watchers_count}} watching this repo</p>
+           {{/if}}
+         </li>
+     </script>
+
+
         <!-- <script id="project-template" type="text/x-handlebars-template">
             <li>Word count: {{numWords}}</li>
         </script>
@@ -38,16 +54,21 @@
 <body>
 <header class="site-header clearfix">
   <nav class="navigation">
-    <div class="icon-menu"></div>
+    <i class="icon-menu"></i>
       <ul>
-        <li class="tab" data-content="home"><a href="#">Home</a></li>
-        <li class="tab" data-content="about"><a href="#">About</a></li>
-        <li class="tab" data-content="projects"><a href="#">Projects</a></li>
-        <li class="tab" data-content="skills"><a href="#">Skills</a></li>
-        <li class="tab" data-content="contact"><a href="#">Contact</a></li>
+        <li class="tab" data-content="home"><a href="/">Home</a></li>
+        <li class="tab" data-content="about"><a href="/about">About</a></li>
+        <li class="tab" data-content="projects"><a href="/projects">Projects</a></li>
+        <li class="tab" data-content="skills"><a href="/skills">Skills</a></li>
+        <li class="tab" data-content="contact"><a href="/contact">Contact</a></li>
       </ul>
   </nav>
 </header>
+
+  <!-- <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger"></label> -->
+
+
 
 <main>
   <section id="home" class="tab-content">
@@ -70,7 +91,7 @@
           <p>Fueled by passion, drive, and ambition to create innovative work in the tech industry.</p>
           <p>I received an undergraduate degree in Finance with minors in Mathematics and Physics from
           the University of Denver. As a student in the honors college, I wrote my thesis on an analysis
-          of the public sector and private sector's role in eradicating global poverty. After completing
+          of the public and private sectors' role in eradicating global poverty. After completing
           my undergraduate degree, I immediately traveled the world on my own, following up on my thesis topic,
           volunteering and working to solve global poverty. I enrolled in graduate school the following year and received
           my International MBA from the University of Denver in 2015. I continued my pursuit of international
@@ -81,6 +102,12 @@
           <p>Since finishing my graduate degree, I have worked as an Investment Analyst for <a href="https://www.rvkinc.com/">RVK, Inc.</a>,
           developing my analytical and quantitative skills.</p>
         </div>
+    <section>
+      <h1>Check out my Projects on GitHub:</h1>
+        <ul>
+          <li>Coding</li>
+        </ul>
+    </section>
   </section>
 
   <section id="projects" class="tab-content">
@@ -115,12 +142,23 @@
     </section>
   </main>
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+
+    <script src="page.js"></script>
+    <script src="Scripts/githubToken.js"></script>
+
     <script src="data/myProjects.json"></script>
     <script src="Scripts/project.js"></script>
     <script src="Scripts/projectView.js"></script>
     <!-- <script src="Scripts/video.js"></script> -->
+
+    <script src="Scripts/repo.js"></script>
+    <script src="Scripts/repoView.js"></script>
+    <script src="Scripts/aboutController.js"></script>
+    <script src="Scripts/routes.js"></script>
+
     <script>
       Project.fetchAll(function() {
         projectView.init();

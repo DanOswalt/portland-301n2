@@ -1,0 +1,412 @@
+/*TODO refactor CSS into SCSS using SASS and Grunt*/
+/*BASE*/
+html{
+  font-size: 62.5%;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+p{
+  margin: .5em 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  margin: .5em 0;
+}
+
+a{
+  text-decoration: none;
+  font-size: 1.6rem;
+}
+
+img{
+  max-width: 100%;
+}
+
+hr{
+  clear: both;
+}
+
+
+
+/*LAYOUT*/
+.container{
+  padding: 2%;
+}
+
+.text-right{
+  text-align:right;
+}
+
+.text-left{
+  text-align:left;
+}
+
+footer{
+  display: flex;
+  align-items: center;
+  height: 6rem;
+  margin: 1%;
+  padding: 0;
+  justify-content: space-around;
+}
+
+article{
+  margin: 4% 0;
+  padding: 1%;
+}
+
+
+.image-left {
+  float: left;
+}
+
+.image-right{
+  float: right;
+}
+
+
+/*MODULES*/
+.header-container{
+  padding: 1% 5%;
+  display: flex;
+  align-items: center;
+}
+
+.container-right{
+  justify-content: flex-end;
+}
+
+.nav-container{
+  height: 8.5rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 3% auto;
+  border-radius: .3rem;
+  padding: 1% 1%;
+  text-align: center;
+}
+
+nav ul{
+  display: flex;
+  padding:1%;
+  width: 60%;
+}
+
+nav li{
+  width: 50%;
+  height: 100%;
+  list-style-type: none;
+  padding: 1.17%;
+  margin: 1%;
+  font-size: 2.0rem;
+}
+
+nav a{
+  display: block;
+  font-size: 1.9rem;
+}
+
+select{
+  -webkit-appearance:none;
+  padding:1.17%;
+  width: 30%;
+  font-size: 1.5rem;
+}
+
+.title-date{
+  padding: .1rem 2.0rem;
+}
+
+.title-date h2{
+  font-size: 3.0rem;
+}
+
+.body-text{
+  padding: .1rem 2.0rem;
+}
+
+.body-text a{
+  letter-spacing: .1rem;
+}
+
+.skills-github{
+  padding: .1rem 2.0rem;
+}
+
+.skills-github a{
+  letter-spacing: .1rem;
+  display: inline-block;
+  margin: .2em;
+}
+
+.skills-github h3{
+  font-size: 2rem;
+  margin: 1rem 0 0 0;
+}
+
+.skills-github .skills{
+  margin: 0 0 1rem 0;
+}
+
+
+.githubfollower {
+  width: 350px;
+  display: inline-block;
+  margin: 1rem;
+}
+
+.image{
+  display: flex;
+  max-height: 25.0rem;
+  margin: 0 20px 50px 20px;
+}
+/*TODO change .skills-images container and images to be mobile responsive*/
+.skills-images img{
+  height: 10.0rem;
+  margin: 3em 1em;
+}
+
+.skills-images{
+  margin: 3rem;
+  display: flex;
+  justify-content: flex-start;
+  clear: both;
+}
+
+.modal{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content{
+  background-color: #fefefe;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  width: 60%;
+  padding: 2%;
+}
+
+#about.header-container{
+  justify-content: flex-end;
+}
+
+footer h4{
+  font-size: 2.2rem;
+}
+
+/*STATES*/
+.window {
+  display: flex;
+  height: .2em;
+  opacity: 0;
+  background: #D7DADF;
+  -webkit-transition: height .8s, opcaity .8s;
+}
+
+
+.window-grow{
+  display: flex;
+  height: 15em;
+  opacity: 1;
+  background: #D7DADF;
+  /*-webkit-transition: height 1s, opacity 2s;*/
+}
+
+/*THEME*/
+html{
+  background-color: #EFF0F1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Istok Web', sans-serif;
+}
+
+p, a{
+  font: 1.8rem "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+}
+
+a{
+  color: #6F7367;
+}
+
+a:hover{
+  color: #4D637C;
+}
+
+.header-container{
+  border-radius: .3rem;
+  background-color: rgba(66, 84, 107, 0.14);
+}
+
+.nav-container{
+  background-color: rgba(66, 84, 107, 0.14);
+}
+
+nav li{
+    border: solid rgba(64, 61, 61, 0.09) .1rem;
+    background-color: rgba(140, 195, 176, 0.07);
+    border-radius: .2rem;
+}
+
+nav a{
+  color: #3d5667;
+}
+
+select{
+  color:  #3d5667;
+  background-color: rgba(140, 195, 176, 0.14);
+  border: solid rgba(64, 61, 61, 0.09) 1px;
+  background: url(/images/br_down.png) rgba(140, 195, 176, 0.07) no-repeat 95%;
+}
+
+article{
+  background-color: rgba(225, 225, 225, 0.64);
+  border-radius: .3rem;
+}
+
+hr{
+  margin: 3rem 1.5rem;
+  border: .1rem solid #6F7367;
+}
+
+#about.header-container{
+  background-color: rgba(225, 225, 225, 0.64);
+}
+
+footer{
+  border: .1rem solid rgba(225, 225, 225, 0.64);
+  border-radius: .1rem;
+  background-color: rgba(225, 225, 225, 0.64);
+}
+
+footer h4{
+  color: #6F7367;
+}
+
+.date{
+  font-style: italic;
+}
+
+.header{
+  font-weight:lighter;
+  letter-spacing: .2rem;
+  margin: 0 2%;
+  font-size: 4.0rem;
+  color: #3d5667;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sub-header{
+  font-size: 2rem;
+  font-weight:lighter;
+  letter-spacing: .2rem;
+  margin: 0 5%;
+  color: #3d5667;
+}
+
+.logo{
+  width: 25%;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.font-icon{
+  text-decoration: none;
+  font-size: 30px;
+  color: #6F7367;
+}
+
+.url-text{
+  font-size: 17px;
+  display: inline-block;
+  margin: 0 0 0 10px;
+  font-style: italic;
+}
+
+ /*MEDIA QUERIES*/
+@media screen and (max-width: 500px){
+  p.url-text{
+    display: none;
+  }
+  .modal {
+    padding: 40% 0;
+  }
+  .modal-content {
+    width: 80%;
+  }
+  .modal-content h1{
+    font-size: 2em;
+  }
+}
+
+@media screen and (max-width: 745px){
+
+  .nav-container{
+    flex-direction: column;
+    height: 100%
+  }
+
+  .nav-container ul{
+    display: block;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  .nav-container li{
+    width: 100%;
+    padding: 1% 0;
+    margin: 1% auto;
+  }
+
+  .nav-container select{
+    width: 100%;
+    text-align: center;
+  }
+
+    .skills-images img{
+      max-height: 5rem;
+      margin: .5rem;
+    }
+
+    .skills-github, .window{
+      height: 8rem;
+    }
+
+}
+
+@media screen and (max-width: 890px){
+  .text{
+    clear: both;
+  }
+
+  .image{
+    margin: 20px 0 50px 0;
+  }
+}

@@ -5,7 +5,7 @@
      "projectURL": "",
      "publishedOn": "2016-05-1",
      "category": "bikes",
-     "body": "<p>Text yadda yaddayadda yaddayadda yaddayadda yaddayadda yaddayadda yadda</p>"
+     "body": "<p>The first website I finished outside a tutorial! My classmate, Sean, and I created a sample website for a nonprofit bike shop. I took on the styling for the page, including implementing a form template we found appealing. The fuctonality pertaining to the bike shop section was also my work. I created a simple pop up div to show more detailed information on the bikes for sale. As most nonprofit bike shops in Portland accept bike donations, I included a form to collect user input on the bike and its details they would like to donate along with their contact informaton.</p>"
    },
    {
      "title" : "Cookie-Store",
@@ -13,7 +13,7 @@
      "projectURL": "http://seanloughran.github.io/bcykleta/",
      "publishedOn": "2016-05-1",
      "category": "cookie",
-     "body": "<p>Text yadda yadda yadda yadda yadda yadda yadda yaddayadda yaddayadda yadda </p>"
+     "body": "<p>Blah Blah blah bah </p>"
    },
    {
      "title" : "To-Do Application",

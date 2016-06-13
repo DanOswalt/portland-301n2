@@ -2,15 +2,93 @@
 article {
   padding: 2rem;
 }
-
-.display-4 {
-  margin-top: 25%;
+nav .btn {
+  display: block;
+}
+nav a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+#projects {
+  border-bottom: 2px solid #DBB93F;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+#projects a:hover {
+  color: #DBB93F;
+  text-decoration: none;
 }
 #about {
-  padding: 2rem;
-  margin-top: 2rem;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border-bottom: 2px solid #DBB93F;
 }
+#about section ul {
+  padding: 5%;
+}
+#about img {
+  margin-bottom: 10%;
+}
+#skills {
+  border-bottom: 2px solid #DBB93F;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+#skills section h3 {
+  margin-bottom: 5%;
+}
+#skills section p {
+  margin-bottom: 10%;
+}
+#profilePic {
+  width: 80%;
+  height: 50%;
+  border-radius: 15%;
+}
+#contact {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+#contact1 h3 {
+  padding-bottom: 5%;
+}
+
 /* Media Queries*/
 @media only screen and (min-width : 768px) and (max-width : 1400px) {
-
+  #skills1 {
+    border-right: 2px solid #DBB93F;
+  }
+  #contact1 {
+    border-right: 2px solid #DBB93F;
+  }
+  #contact2 {
+    width: 30%;
+    margin-top: 10%;
+    margin-left: 10%;
+  }
+  nav ul {
+    position: fixed;
+    top: 0;
+    left: 20%;
+    z-index: 1;
+    border-bottom: 2px solid black;
+    margin: auto;
+  }
+  a {
+    text-decoration: none;
+    color: #373a3c;
+  }
+  nav li {
+    display: inline;
+    padding: 5%;
+  }
+  nav .btn {
+    display: inline-block;
+  }
+  nav .btn:hover {
+    color: #DBB93F;
+    text-decoration: none;
+    border-color: #dbb93f;
+  }
 }
