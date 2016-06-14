@@ -1,4 +1,4 @@
-#projects-module {
+#blog-module {
   margin: 0 auto;
   padding: 0;
   text-align: center;
@@ -11,8 +11,8 @@
   opacity: 0.75;
 }
 
-.project {
-  background-color: #010101;;
+.blog {
+  background-color: #010101;
   margin: 50px auto;
   padding: 5px 10px;
   max-width: 600px;

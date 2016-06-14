@@ -8,17 +8,23 @@
 
     init : function(context) {
       var self = BlogView;
+      var $blogModule = $('#blog-module');
+
+      $('.module-view').hide();
+      $('#blog-module').show();
+
+      $blogModule.empty();
+
+      Handlebars.registerHelper('daysAgo', function() {
+        return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
+      });
+
       self.getTemplate('blog-entry-template')
           .done(function(template){
-            $('#blog-module').append(template);
-            Handlebars.registerHelper('daysAgo', function() {
-              return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
-            });
-            // $('#blog-entry-template').hide();
+            $blogModule.append(template);
             self.loadBlogEntries(context.state.blogdata);
           });
 
-      // self.handleTabClicks();
       // // self.initNewProject();
       // self.handleNewProjectSubmit();
       // self.handleJSONSelection();
@@ -32,7 +38,6 @@
 
     compileHandlebarsTemplate : function(obj, templateElementId) {
       var appTemplate = $(templateElementId).html();
-      console.log('apptemplate: ' + appTemplate);
       var compileTemplate = Handlebars.compile(appTemplate);
       return compileTemplate(obj);
     },
@@ -50,6 +55,8 @@
         self.attachHtmlToParent('#blog-module', html);
 
       });
+
+      // $('#blog-entry-template').hide();
     },
 
     initNewProject : function() {
