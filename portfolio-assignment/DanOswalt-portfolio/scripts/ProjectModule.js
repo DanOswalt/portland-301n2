@@ -1,68 +1,69 @@
 (function(module){
 
   /*****
-  * BlogModule
+  * ProjectModule
   ***/
 
-  var BlogModule = {
+  var ProjectModule = {
 
     /*******
      * init loads data either from localstorage or from file
      ***/
 
     init : function(context, next) {
-      var self = BlogModule;
+      var self = ProjectModule;
 
-      //check if blogdata state exists
-      if(context.state.blogdata) {
-        self.blogdata = context.state.blogdata;
+      //check if projectdata state exists
+      if(context.state.projectdata) {
+        self.projectdata = context.state.projectdata;
         next();
       } else {
 
       //fetch the xhr header to compare etags
-        self.fetchFromFile('data/blogentries.json', 'HEAD')
+        self.fetchFromGithub('/github/users/DanOswalt/repos', 'HEAD')
             .done(function(response, status, xhr){
               var etag = xhr.getResponseHeader('Etag');
-              var storedEtag = self.loadFromLocalStorage('blogetag');
+              var storedEtag = self.loadFromLocalStorage('projectetag');
 
               //if what is in local storage is the same, then fetch from local storage
               if(etag === storedEtag){
-                context.state.blogdata = self.loadFromLocalStorage('blogdata');
+                context.state.projectdata = self.loadFromLocalStorage('projectdata');
                 context.save();
-                self.blogdata = context.state.blogdata;
+                self.projectdata = context.state.projectdata;
                 next();
 
               //if they don't match, or nothing stored, load from the data file
               } else {
-                self.fetchFromFile('data/blogentries.json', 'GET')
+                self.fetchFromGithub('/github/users/DanOswalt/repos', 'GET') //call to api
                     .done(function(response, status, xhr){
-                      context.state.blogdata = response.data;
+                      var repos = { data: response };
+                      context.state.projectdata = repos.data;
                       context.save();
-                      self.blogdata = context.state.blogdata;
-                      self.saveToLocalStorage('blogdata', response.data);
-                      self.saveToLocalStorage('blogetag', etag);
+                      self.projectdata = context.state.projectdata;
+                      self.saveToLocalStorage('projectdata', repos.data);
+                      self.saveToLocalStorage('projectetag', etag);
                       next();
                     })
-                    .fail(function(){
-                      context.state.blogdata = self.loadFromLocalStorage('blogdata');
+                    .fail(function(){ //if this fails, load up 'old' stuff from localstorage
+                      context.state.projectdata = self.loadFromLocalStorage('projectdata');
                       context.save();
-                      self.blogdata = context.state.blogdata;
+                      self.projectdata = context.state.projectdata;
                       next();
                     });
               };
             })
             .fail(function(){
-              context.state.blogdata = [];
+              context.state.projectdata = [];
               context.save();
-              self.blogdata = context.state.blogdata;
+              self.projectdata = context.state.projectdata;
               next();
             });
       }
     },
 
-    fetchFromFile : function(file, type) {
+    fetchFromGithub : function(url, type) {
       return $.ajax({
-        url: file,
+        url: url,
         type: type
       });
     },
@@ -83,6 +84,6 @@
     }
   };
 
-  module.BlogModule = BlogModule;
+  module.ProjectModule = ProjectModule;
 
 })(window);

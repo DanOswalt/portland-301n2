@@ -1,35 +1,31 @@
 (function(module){
 
   /***
-   * BlogView
+   * ProjectView
    **/
 
-  var BlogView = {
+  var ProjectView = {
 
     init : function(context) {
-      var self = BlogView;
-      var $blogModule = $('#blog-module');
+      var self = ProjectView;
+      var $projectModule = $('#project-module');
 
       $('.module-view').hide();
       $('.view').removeClass('active');
-      $('#blog-module').show();
-      $('#blog-link').addClass('active');
+      $('#project-module').show();
+      $('#project-link').addClass('active');
 
-      $blogModule.empty();
+      $projectModule.empty();
 
       Handlebars.registerHelper('daysAgo', function() {
         return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
       });
 
-      self.getTemplate('blog-entry-template')
+      self.getTemplate('project-template')
           .done(function(template){
-            $blogModule.append(template);
-            self.loadBlogEntries(context.state.blogdata);
+            $projectModule.append(template);
+            self.loadProjects(context.state.projectdata);
           });
-
-      // // self.initNewProject();
-      // self.handleNewProjectSubmit();
-      // self.handleJSONSelection();
     },
 
     getTemplate : function(templateId){
@@ -40,11 +36,12 @@
 
     compileHandlebarsTemplate : function(obj, templateElementId) {
       var appTemplate = $(templateElementId).html();
+      console.log(appTemplate);
       var compileTemplate = Handlebars.compile(appTemplate);
       return compileTemplate(obj);
     },
 
-    loadBlogEntries : function(data) {
+    loadProjects : function(data) {
       var self = this;
 
       data.sort(function(a,b) {
@@ -52,18 +49,20 @@
       });
 
       data.forEach(function(data) {
-        var blogEntry = new BlogEntry(data);
-        var html = self.compileHandlebarsTemplate(blogEntry, '#blog-entry-template');
-        self.attachHtmlToParent('#blog-module', html);
+        var project = new Project(data);
+        console.log(project);
+        var html = self.compileHandlebarsTemplate(project, '#project-template');
+        self.attachHtmlToParent('#project-module', html);
 
       });
+
     },
 
     attachHtmlToParent : function(parentSelector, html) {
       $(parentSelector).append(html);
-    }
+    },
   };
 
-  module.BlogView = BlogView;
+  module.ProjectView = ProjectView;
 
 })(window);
