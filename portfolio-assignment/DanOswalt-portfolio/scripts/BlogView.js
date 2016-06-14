@@ -1,35 +1,34 @@
 (function(module){
   /***
-   * ViewHandler
+   * BlogView
    **/
 
-  var ViewHandler = {
+  var BlogView = {
 
-    init : function() {
-      console.log(this);
-      var self = this;
+    init : function(context) {
+      var self = BlogView;
       console.log(self);
+      console.log(context);
+      self.loadBlogEntries();
       self.initNewProject();
       self.handleTabClicks();
       self.handleNewProjectSubmit();
       self.handleJSONSelection();
-      self.getTemplate('project-template').then(function(template){
-        Handlebars.registerHelper('daysAgo', function() {
-          return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
-        });
-        if($('#projects-module').length) {
-          $('#projects-module').append(template);
-        } else {
-          $('#projects-preview').append(template);
-        }
-        self.getTemplate('footer-template').then(function(template){
-          $('#site-footer').append(template);
-          ProjectModule.init();
-        }).then(function(){
-          $('#project-template').hide();
-          $('#footer-template').remove();
-        });
-      });
+      self.getTemplate('project-template')
+          .done(function(template){
+            Handlebars.registerHelper('daysAgo', function() {
+              return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
+            });
+
+            if($('#projects-module').length) {
+              $('#projects-module').append(template);
+            } else {
+              $('#projects-preview').append(template);
+            }
+
+            $('#project-template').hide();
+            $('#footer-template').remove();
+          });
     },
 
     getTemplate : function(templateId){
@@ -44,14 +43,16 @@
       return compileTemplate(obj);
     },
 
-    loadProjects : function() {
+    loadBlogEntries : function() {
       var self = this;
 
-      ProjectModule.data.sort(function(a,b) {
+      console.log(BlogModule.data);
+
+      BlogModule.data.sort(function(a,b) {
         return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
       });
-      ProjectModule.data.forEach(function(projectData) {
-        var project = new Project(projectData);
+      BlogModule.data.forEach(function(projectData) {
+        var project = new BlogEntry(projectData);
         var html = self.compileHandlebarsTemplate(project, '#project-template');
         if($('#projects-module').length) {
           console.log('load to projects module');
@@ -61,14 +62,6 @@
           self.attachHtmlToParent('#project-preview', html);
         }
       });
-      // $('#project-template').remove();
-
-    },
-
-    loadFooterFun : function(footerData) {
-      var html = ViewHandler.compileHandlebarsTemplate(footerData, '#footer-template');
-      ViewHandler.attachHtmlToParent('#site-footer', html);
-      // $('#footer-template').remove();
     },
 
     handleTabClicks : function() {
@@ -110,8 +103,8 @@
         screenshot: ''
       });
 
-      html = ViewHandler.compileHandlebarsTemplate(project, '#project-template');
-      ViewHandler.attachHtmlToParent('#project-preview', html);
+      html = BlogView.compileHandlebarsTemplate(project, '#project-template');
+      BlogView.attachHtmlToParent('#project-preview', html);
       $('#project-json').val(JSON.stringify(project));
     },
 
@@ -125,10 +118,10 @@
           ProjectModule.saveToLocalStorage(ProjectModule.data);
           self.clearInputFields();
           $('#project-preview').empty();
-          ViewHandler.showSaveMessage('Saved!');
+          BlogView.showSaveMessage('Saved!');
         } else {
           // $('.save-msg').show().html('<h2 class="msg">Form is empty!</h2>').fadeOut(800);
-          ViewHandler.showSaveMessage('Form is empty!');
+          BlogView.showSaveMessage('Form is empty!');
           console.log('form is empty!');
         }
       });
@@ -155,6 +148,6 @@
     }
   };
 
-  module.ViewHandler = ViewHandler;
+  module.BlogView = BlogView;
 
 })(window);

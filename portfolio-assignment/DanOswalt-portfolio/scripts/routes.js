@@ -1,7 +1,6 @@
 //Root loads blog
-page('/', function() {
-  BlogView.init();
-});
+page('/', BlogModule.init, BlogView.init);
+
 page('/projects', function() {
   ProjectModule.init();
 });

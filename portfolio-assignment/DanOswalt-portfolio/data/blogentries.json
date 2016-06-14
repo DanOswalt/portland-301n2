@@ -2,7 +2,28 @@
   [
     {
       "title" : "Fake Blog Entry",
-      "blogNumber" : 0,
+      "blogNumber" : 1,
+      "publishedOn" : "2016-06-10",
+      "image" : "",
+      "body" : "d"
+    },
+    {
+      "title" : "Fake Blog Entry 2",
+      "blogNumber" : 2,
+      "publishedOn" : "2016-06-10",
+      "image" : "",
+      "body" : "d"
+    },
+    {
+      "title" : "Fake Blog Entry 3",
+      "blogNumber" : 3,
+      "publishedOn" : "2016-06-10",
+      "image" : "",
+      "body" : ""
+    },
+    {
+      "title" : "Fake Blog Entry 4",
+      "blogNumber" : 4,
       "publishedOn" : "2016-06-10",
       "image" : "",
       "body" : ""

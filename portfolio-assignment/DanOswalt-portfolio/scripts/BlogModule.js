@@ -10,81 +10,62 @@
      * init loads data either from localstorage or from file
      ***/
 
-    init : function() {
-      var self = this;
-      var randomLetter = self.getRandomLetter();
+    init : function(context, next) {
+      var self = BlogModule;
 
-      if(localStorage.data){
-        self.loadFromLocalStorage('data');
-        ViewHandler.loadBlogEntries();
-      } else {
-        $.getJSON('data/blogentries.json')
-          .done(function(json){
-            self.data = json.data;
-            ViewHandler.loadBlogEntries();
-            self.saveToLocalStorage(self.data);
-          }).fail(function(){
+      //fetch the xhr header to compare etags
+      self.fetchFromFile('data/blogentries.json', 'HEAD')
+          .done(function(response, status, xhr){
+            var etag = xhr.getResponseHeader('Etag');
+            var storedEtag = self.loadFromLocalStorage('blogetag');
+
+            //if what is in local storage is the same, then fetch from local storage
+            if(etag === storedEtag){
+              self.data = self.loadFromLocalStorage('blogdata');
+              next();
+
+            //if they don't match, or nothing stored, load from the data file
+            } else {
+              self.fetchFromFile('data/blogentries.json', 'GET')
+                  .done(function(response, status, xhr){
+                    self.data = response.data;
+                    // var etag = xhr.getResponseHeader('Etag');
+                    self.saveToLocalStorage('blogdata', response.data);
+                    self.saveToLocalStorage('blogetag', etag);
+                    next();
+                  })
+                  .fail(function(){
+                    self.data = [];
+                    next();
+                  });
+            };
+          })
+          .fail(function(){
             self.data = [];
+            next();
           });
-      }
+    },
 
-      ViewHandler.loadFooterFun({
-        copyrightYear : new Date().getFullYear(),
-        blogentrycount : self.data.length,
-        last30DaysCount : self.getLast30DaysCount(),
-        randomLetter: randomLetter,
-        randomLetterCount : self.getRandomLetterCountFromBlogs(randomLetter)
+    fetchFromFile : function(file, type) {
+      return $.ajax({
+        url: file,
+        type: type
       });
-
     },
 
-    getLast30DaysCount : function() {
-      return this.data.map(function(blogEntry){
-        return blogEntry.publishedOn;
-      })
-      .filter(this.publishedInLast30Days)
-      .length;
-    },
-
-    publishedInLast30Days : function (dateString) {
-      return parseInt((new Date() - new Date(dateString)) / 1000 / 60 / 60 / 24) <= 30;
-    },
-
-    getRandomLetter : function () {
-      var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
-      return alphabet[Math.floor(Math.random() * 26)];
-    },
-
-    getLetterCount : function(letter, str) {
-      var regex = new RegExp(letter, 'ig');
-      var matches = str.match(regex) || [];
-      return matches.length;
-    },
-
-    getRandomLetterCountFromBlogs : function(letter) {
-      var self = this;
-      var str = self.data.reduce( function(total, project) {
-        total += blogEntry.title || '';
-        total += blogEntry.description || '';
-        total += blogEntry.details || '';
-        return total;
-      } , '');
-      return self.getLetterCount(letter, str);
-    },
-
-    saveToLocalStorage : function(data) {
+    saveToLocalStorage : function(key, value) {
       console.log('save data');
-      localStorage.setItem('data', JSON.stringify(data));
+      localStorage.setItem(key, JSON.stringify(value));
     },
 
-    clearFromLocalStorage : function(data) {
+    clearFromLocalStorage : function(key) {
       console.log('clear data');
-      localStorage.removeItem(data);
+      localStorage.removeItem(key);
     },
 
-    loadFromLocalStorage : function(data) {
+    loadFromLocalStorage : function(key) {
       console.log('load data');
-      this.data = JSON.parse(localStorage.getItem(data));
+      return JSON.parse(localStorage.getItem(key));
     }
   };
 
