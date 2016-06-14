@@ -10,7 +10,6 @@
       var self = BlogView;
       self.getTemplate('blog-entry-template')
           .done(function(template){
-            console.log(template);
             $('#blog-module').append(template);
             Handlebars.registerHelper('daysAgo', function() {
               return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
@@ -41,28 +40,15 @@
     loadBlogEntries : function(data) {
       var self = this;
 
-      console.log(data);
-
       data.sort(function(a,b) {
         return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
       });
 
       data.forEach(function(data) {
         var blogEntry = new BlogEntry(data);
-        console.log(blogEntry);
-
-        var html = self.compileHandlebarsTemplate(blogEntry, '#blog-module');
+        var html = self.compileHandlebarsTemplate(blogEntry, '#blog-entry-template');
         self.attachHtmlToParent('#blog-module', html);
 
-      });
-    },
-
-    handleTabClicks : function() {
-      $('#nav-links').on('click', 'li.tab', function(e){
-        e.preventDefault();
-        var dataContent = $(this).attr('data-content');
-        $('.tab-view').fadeOut('fast');
-        $('#' + dataContent).fadeIn('fast');
       });
     },
 
