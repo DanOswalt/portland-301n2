@@ -13,37 +13,50 @@
     init : function(context, next) {
       var self = BlogModule;
 
+      //check if blogdata state exists
+      if(context.state.blogdata) {
+        console.log('context: ' + context);
+        self.blogdata = context.state.blogdata;
+        next();
+      } else {
+
       //fetch the xhr header to compare etags
-      self.fetchFromFile('data/blogentries.json', 'HEAD')
-          .done(function(response, status, xhr){
-            var etag = xhr.getResponseHeader('Etag');
-            var storedEtag = self.loadFromLocalStorage('blogetag');
+        self.fetchFromFile('data/blogentries.json', 'HEAD')
+            .done(function(response, status, xhr){
+              var etag = xhr.getResponseHeader('Etag');
+              var storedEtag = self.loadFromLocalStorage('blogetag');
 
-            //if what is in local storage is the same, then fetch from local storage
-            if(etag === storedEtag){
-              self.data = self.loadFromLocalStorage('blogdata');
+              //if what is in local storage is the same, then fetch from local storage
+              if(etag === storedEtag){
+                context.state.blogdata = self.loadFromLocalStorage('blogdata');
+                context.save();
+                self.blogdata = context.state.blogdata;
+                next();
+
+              //if they don't match, or nothing stored, load from the data file
+              } else {
+                self.fetchFromFile('data/blogentries.json', 'GET')
+                    .done(function(response, status, xhr){
+                      context.state.blogdata = response.data;
+                      context.save();
+                      self.blogdata = context.state.blogdata;
+                      self.saveToLocalStorage('blogdata', response.data);
+                      self.saveToLocalStorage('blogetag', etag);
+                      next();
+                    })
+                    .fail(function(){
+                      context.state.blogdata = [];
+                      self.blogdata = context.state.blogdata;
+                      next();
+                    });
+              };
+            })
+            .fail(function(){
+              context.state.blogdata = [];
+              self.blogdata = context.state.blogdata;
               next();
-
-            //if they don't match, or nothing stored, load from the data file
-            } else {
-              self.fetchFromFile('data/blogentries.json', 'GET')
-                  .done(function(response, status, xhr){
-                    self.data = response.data;
-                    // var etag = xhr.getResponseHeader('Etag');
-                    self.saveToLocalStorage('blogdata', response.data);
-                    self.saveToLocalStorage('blogetag', etag);
-                    next();
-                  })
-                  .fail(function(){
-                    self.data = [];
-                    next();
-                  });
-            };
-          })
-          .fail(function(){
-            self.data = [];
-            next();
-          });
+            });
+      }
     },
 
     fetchFromFile : function(file, type) {

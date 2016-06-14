@@ -1,4 +1,5 @@
 (function(module){
+
   /***
    * BlogView
    **/
@@ -7,28 +8,21 @@
 
     init : function(context) {
       var self = BlogView;
-      console.log(self);
-      console.log(context);
-      self.loadBlogEntries();
-      self.initNewProject();
-      self.handleTabClicks();
-      self.handleNewProjectSubmit();
-      self.handleJSONSelection();
-      self.getTemplate('project-template')
+      self.getTemplate('blog-entry-template')
           .done(function(template){
+            console.log(template);
+            $('#blog-module').append(template);
             Handlebars.registerHelper('daysAgo', function() {
               return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
             });
-
-            if($('#projects-module').length) {
-              $('#projects-module').append(template);
-            } else {
-              $('#projects-preview').append(template);
-            }
-
-            $('#project-template').hide();
-            $('#footer-template').remove();
+            // $('#blog-entry-template').hide();
+            self.loadBlogEntries(context.state.blogdata);
           });
+
+      // self.handleTabClicks();
+      // // self.initNewProject();
+      // self.handleNewProjectSubmit();
+      // self.handleJSONSelection();
     },
 
     getTemplate : function(templateId){
@@ -39,28 +33,27 @@
 
     compileHandlebarsTemplate : function(obj, templateElementId) {
       var appTemplate = $(templateElementId).html();
+      console.log('apptemplate: ' + appTemplate);
       var compileTemplate = Handlebars.compile(appTemplate);
       return compileTemplate(obj);
     },
 
-    loadBlogEntries : function() {
+    loadBlogEntries : function(data) {
       var self = this;
 
-      console.log(BlogModule.data);
+      console.log(data);
 
-      BlogModule.data.sort(function(a,b) {
+      data.sort(function(a,b) {
         return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
       });
-      BlogModule.data.forEach(function(projectData) {
-        var project = new BlogEntry(projectData);
-        var html = self.compileHandlebarsTemplate(project, '#project-template');
-        if($('#projects-module').length) {
-          console.log('load to projects module');
-          self.attachHtmlToParent('#projects-module', html);
-        } else {
-          console.log('load to projects preview');
-          self.attachHtmlToParent('#project-preview', html);
-        }
+
+      data.forEach(function(data) {
+        var blogEntry = new BlogEntry(data);
+        console.log(blogEntry);
+
+        var html = self.compileHandlebarsTemplate(blogEntry, '#blog-module');
+        self.attachHtmlToParent('#blog-module', html);
+
       });
     },
 
