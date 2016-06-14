@@ -59,7 +59,7 @@
           self.attachHtmlToParent('#project-preview', html);
         }
       });
-      // $('#project-template').remove();
+      $('#project-template').remove();
 
     },
 
