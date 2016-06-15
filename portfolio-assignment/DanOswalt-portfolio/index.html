@@ -13,53 +13,40 @@
 
   <body>
     <main>
-      <!-- 'page wrap' is for the css-tricks sticky footer solution -->
-      <div class='page-wrap'>
-        <header class='title-header'>
-          <h1 id='title-headline'>Dan Oswalt</h1>
-          <nav id='nav-links'>
-            <ul>
-              <a href=''><li class="tab" data-content="projects-module">Home</li><a>
-              <a href=''><li class="tab" data-content="about">About</li><a>
-              <a href='https://github.com/DanOswalt' target="_blank" ><li>GitHub</li><a>
-              <a href='' target="_blank" ><li>Twitter</li><a>
-              <a href='' target="_blank" ><li>LinkedIn</li><a>
-            </ul>
-          </nav>
-        </header>
+      <header class='title-header'>
+        <h1 id='title-headline'>Dan Oswalt</h1>
+        <nav id='nav-links'>
+          <ul>
+            <a href='/'><li id='blog-link' class="view active" data-content="blog">Blog</li><a>
+            <a href='/projects'><li id='projects-link' class="view" data-content="projects">Projects</li><a>
+          </ul>
+        </nav>
+      </header>
+      <section id='modules'>
 
-        <!-- Project-views load here -->
-        <section id='projects-module' class='tab-view'>
+        <!-- Blog-entries load here -->
+        <section id='blog-module' class='module-view'></section>
+
+        <!-- Project-entries load here -->
+        <section id='project-module' class='module-view'>
         </section>
 
-        <!-- about tab content -->
-        <section id='about' class='tab-view'>
-          <div class='about-container'>
-            <img src='img/profilepic.jpeg'>
-            <p>Some info about me!</p>
-            <p>Fascinating information Fascinating information Fascinating information Fascinating information Fascinating information  </p>
-          </div>
-        </section>
-      </div><!-- end page wrap -->
-
-      <!-- Dynamic foot loads here -->
-      <footer id='site-footer'>
-      </footer>
+      </section>
 
     </main>
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-  <script src="scripts/project.js"></script>
+  <script src="scripts/BlogEntry.js"></script>
+  <script src="scripts/BlogModule.js"></script>
+  <script src="scripts/BlogView.js"></script>
+  <script src="scripts/Project.js"></script>
   <script src="scripts/ProjectModule.js"></script>
-  <script src="scripts/ViewHandler.js"></script>
-  <script src="scripts/repo.js"></script>
-  <script src="scripts/githubToken.js"></script>
-  <script>
-    ViewHandler.init();
-    Handlebars.registerHelper('daysAgo', function() {
-      return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
-    });
-  </script>
+  <script src="scripts/ProjectView.js"></script>
+  <script src="scripts/NewEntryModule.js"></script>
+  <script src="scripts/NewEntryView.js"></script>
+  <script src="vendors/scripts/page.js"></script>
+  <script src="scripts/routes.js"></script>
+
 </html>
