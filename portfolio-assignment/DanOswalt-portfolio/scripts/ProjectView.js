@@ -13,7 +13,7 @@
       $('.module-view').hide();
       $('.view').removeClass('active');
       $('#project-module').show();
-      $('#project-link').addClass('active');
+      $('#projects-link').addClass('active');
 
       $projectModule.empty();
 
@@ -26,6 +26,7 @@
             $projectModule.append(template);
             self.loadProjects(context.state.projectdata);
           });
+
     },
 
     getTemplate : function(templateId){
@@ -55,6 +56,8 @@
         self.attachHtmlToParent('#project-module', html);
 
       });
+
+      $('#project-template').hide();
 
     },
 

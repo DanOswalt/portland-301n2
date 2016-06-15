@@ -26,10 +26,6 @@
             $blogModule.append(template);
             self.loadBlogEntries(context.state.blogdata);
           });
-
-      // // self.initNewProject();
-      // self.handleNewProjectSubmit();
-      // self.handleJSONSelection();
     },
 
     getTemplate : function(templateId){
@@ -57,6 +53,8 @@
         self.attachHtmlToParent('#blog-module', html);
 
       });
+
+      $('#blog-entry-template').hide();
     },
 
     attachHtmlToParent : function(parentSelector, html) {

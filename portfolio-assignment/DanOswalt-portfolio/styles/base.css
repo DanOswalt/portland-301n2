@@ -106,21 +106,12 @@ header.title-header {
   color: white;
 }
 
-#about {
-  display: none;
-  margin-top: 100px;
+#nav-links .active {
+  opacity: 0.5;
 }
 
-.about-container {
-  color: #E8E2CC;
-  width: 75%;
-  text-align: center;
-  margin: 0 auto;
-  padding: 0;
-}
-
-#about img {
-  margin: 0 auto;
+#modules {
+  margin-top: 179px;
 }
 
 /* when width is less than 500 */
@@ -149,10 +140,6 @@ header.title-header {
     display: inline-block;
     margin: 2px;
     text-align: center;
-  }
-
-  #about img {
-    max-width: 20%;
   }
 
   .page-wrap {
