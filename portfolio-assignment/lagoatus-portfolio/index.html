@@ -63,18 +63,20 @@
             </div>
             <hr>
         </nav>
-        <section id="projects">
+        <section id="projects" class="tab-content">
 
         </section>
 
         <section id="about" class="tab-content">
-            <header>
+            <header class="aboutSection">
                 Welcome to my Portfolio!
             </header>
-            <section id="aboutSection">
+            <h4 class="aboutRepos">
+                My Repo Info:
+            </h4>
+            <section class="aboutSection">
                 <h1>Some of my interests:</h1>
                 <ul>
-
                     <li>Coding</li>
                     <li>Finding a new species of bird that I have never seen.</li>
                     <li>Discovering...</li>
@@ -95,15 +97,13 @@
     <script src="/css/vendor/typed.js"></script>
     <script src="/scripts/blog.js"></script>
     <script src="/scripts/view.js"></script>
-
-    <script src="/scripts/aboutController.js"></script>
     <script src="/scripts/repo.js"></script>
     <script src="/scripts/repoView.js"></script>
+
+    <script src="/scripts/aboutController.js"></script>
+    <script src="/scripts/projectsController.js"></script>
     <script src="/scripts/routes.js"></script>
 
-    <script>
-      Projects.fetchall(projectView.initIndexPage);
-    </script>
 </body>
 
 </html>
