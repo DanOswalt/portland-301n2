@@ -89,7 +89,7 @@ p, .projectDescription, li>a {
 
 footer p {
   text-align: center;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   margin: 20px auto;
 }
 
@@ -335,6 +335,11 @@ footer p {
 
   .projectName {
     font-size: 1.6rem;
+    text-decoration: underline;
+  }
+
+  .projectCategory {
+    font-size: 0.9rem;
   }
 
   .projectDate {

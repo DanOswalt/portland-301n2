@@ -17,10 +17,17 @@
         <script id="projectTemplate" type="text/x-handlebars-template">
           <ul>
             <li id="title" class="projectName"><a href="{{link}}" target="_blank">{{title}}</a></li>
+            <li id="category" class="projectCategory">{{category}}</li>
             <li id="date" class="projectDate">{{date}}</li>
             <img id="projectImage" class='fullWidthImages' src="{{image}}">
             <li id="description" class="projectDescription">{{description}}</li>
           </ul>
+        </script>
+
+        <script id="repo-template" type="text/x-handlebars-template">
+          <li>
+            <a href="{{url}}">{{name}}</a>
+          </li>
         </script>
     </head>
 
@@ -29,12 +36,12 @@
     	<header>
 	    	<div class="row-fluid">
 		    	<div class="span12 navContainer">
-              <a href="index.html"><img id="ericImg" src="images/eric-profile-circle.png"></a>
+              <a href="/"><img id="ericImg" src="images/eric-profile-circle.png"></a>
               <h1 id="pageTitle">Eric Johnson</h1>
               <nav class="nav">
-                  <a data-tab="about" class="selected" href="#about">About</a>
-                  <a data-tab="projects" href="#projects">Projects</a>
-                  <a data-tab="connect" href="#connect">Connect</a>
+                  <a id="about-link" data-tab="about" href="/about">About</a>
+                  <a id="projects-link" data-tab="projects" href="/projects">Projects</a>
+                  <a id="connect-link" data-tab="connect" href="/connect">Connect</a>
               </nav>
 		      </div>
 		    </div>
@@ -61,8 +68,14 @@
   					<ul>
   						<li><a href="https://www.codefellows.org/courses/code-301/intermediate-software-development">Code Fellows Intermediate Software Development Spring '16</a></li>
   						<li><a href="https://generalassemb.ly/education/front-end-web-development">General Assembly Front End Class Summer '14</a></li>
-  						<li>More soon!</li>
+  						<li>Skills: HTML/CSS, Sass, Javascript/JQuery, Handlebars, REST APIs, JSON, SQL</li>
   					</ul>
+            <div id="github">
+              <h3>My GitHub Projects</h3>
+              <ul>
+                <!-- github projects go here-->
+              </ul>
+            </div>
   				</div>
         </div>
         <div class="row-fluid">
@@ -70,7 +83,7 @@
   					<h3>Practicing design</h3>
   					<ul>
   						<li><a href="http://trydesignlab.com/course/certificates/EricJ/">DesignLab Summer '14</a></li>
-  						<li>More soon!</li>
+  						<li>Skills: Photoshop, Sketch, Invision</li>
   					</ul>
   				</div>
 			</div>
@@ -111,13 +124,17 @@
     <!-- js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
-    <script src="lab.js"></script>
-    <script>
-      $(function(){
-        ProjectsModule.init()
-      });
-    </script>
-    <!-- js -->
+    <script src="/vendor/page.js"></script>
 
+    <script src="scripts/repos.js"></script>
+    <script src="scripts/repoView.js"></script>
+    <script src="scripts/portfolioView.js"></script>
+
+    <script src="scripts/aboutController.js"></script>
+    <script src="scripts/projectController.js"></script>
+    <script src="scripts/connectController.js"></script>
+
+    <script src="/scripts/routes.js"></script>
+    <!-- js -->
     </body>
 </html>

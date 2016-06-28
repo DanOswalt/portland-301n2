@@ -1,23 +1,26 @@
-// TODO assignment 09 - make this a real iffe
-// $('document').ready(function () {
 (function(module){
 
   // project constructor function
   function Project(x) {
     this.title = x.title;
+    this.category = x.category;
     this.date = x.date;
     this.description = x.description;
     this.link = x.link;
     this.image = x.image;
   }
 
-  var ProjectsModule = {
+// Project function method for project to HTML
+  Project.prototype.toHtml = function() {
+    // use handlebars
+    var templateScript = $('#projectTemplate').html();
+    var projectTemplate = Handlebars.compile(templateScript);
+    var html = projectTemplate(this);
+    return(html);
+  };
 
-    hideAbout: function() {
-      $('section').not('#about').hide();
-    },
+  var PortfolioModule = {
 
-    // todo assignment 09
     toggleStickyNav: function(topOfNav) {
       var scrollTop = $(window).scrollTop();
 
@@ -33,14 +36,23 @@
       this.toggleStickyNav(topOfNav);
     },
 
-    navClick: function() {
+    navSelect: function() {
       // change visible tab by click on nav links
       $('nav a').on('click', function() {
         $tabClicked = $(this).data('tab');
         $(this).addClass('selected').siblings().removeClass('selected');
-        $('section').hide();
-        $('#' + $tabClicked).show();
+        console.log($tabClicked + ' is clicked');
       });
+    },
+
+    navInit: function() {
+      currentPath = window.location.pathname;
+      if (currentPath != '/') {
+        linkName = currentPath.substring(1) + '-link';
+        document.getElementById(linkName).classList.add('selected');
+      } else {
+        document.getElementById('about-link').classList.add('selected');
+      }
     },
 
     getWeather: function() {
@@ -64,33 +76,33 @@
         });
       });
     }
+  }; // end PortfolioModule
 
+// initialize each page when navigated to via routes.js
+  PortfolioModule.initAbout = function() {
+    $('section').hide();
+    $('#about').show();
   };
 
-
-// Project function method for project to HTML
-  Project.prototype.toHtml = function() {
-    // use handlebars
-    var templateScript = $('#projectTemplate').html();
-    var projectTemplate = Handlebars.compile(templateScript);
-    var html = projectTemplate(this);
-    return(html);
+  PortfolioModule.initProjects = function() {
+    $('section').hide();
+    $('#projects').show();
+    PortfolioModule.projectJSON();
   };
 
-  ProjectsModule.init = function() {
-    ProjectsModule.hideAbout();
-    ProjectsModule.navClick();
-    ProjectsModule.getWeather();
-    ProjectsModule.projectJSON();
+  PortfolioModule.initConnect = function() {
+    $('section').hide();
+    $('#connect').show();
+    PortfolioModule.getWeather();
   };
 
   $(window).scroll(function() {
-    ProjectsModule.stickyNav();
+    PortfolioModule.stickyNav();
   });
 
-  module.ProjectsModule = ProjectsModule;
+  PortfolioModule.navSelect();
+  PortfolioModule.navInit();
 
-// }); // end document.ready
-
+  module.PortfolioModule = PortfolioModule;
 
 })(window);

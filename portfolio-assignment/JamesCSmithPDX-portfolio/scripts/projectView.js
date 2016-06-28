@@ -2,16 +2,27 @@
 
   var projectView = {};
 
+  //hanldebars template
+  projectView.getTemplate = function(data, callback){
+    getTemplate('portfolio', data, callback);
+  };
+
   // create tab views of content in #projects and #about
   projectView.portfolio = function() {
-    Project.all.forEach(function(a){
-      $('#projects').append(a.toHtml());
-    });
-    projectView.createTeaser();
     $('.jumbotron').fadeTo(5000, 1);
     $('.page-content').hide();
     $('#projects').fadeIn(5000);
     projectView.scroll('#projects');
+    projectView.createTeaser();
+  };
+
+  projectView.about = function() {
+    $('.jumbotron').fadeTo(5000, 1);
+    $('.page-content').hide();
+    $('#hbAnagram').remove();
+    anagram.create();
+    $('#about').fadeIn(5000);
+    projectView.scroll('#about');
   };
 
   projectView.about = function() {
@@ -28,6 +39,7 @@
   projectView.createTeaser = function() {
     $('.projDescription *:nth-child(n)').hide();
     $('.projDescription *:nth-child(1)').show();
+    $('.read-on').show();
     $('.shrink').hide();
     $('.read-on').on('click', function(event) {
       event.preventDefault();
@@ -37,15 +49,6 @@
     });
   };
 
-  projectView.shrinkTeaser = function() {
-    $('.shrink').on('click', function(event) {
-      event.preventDefault();
-      $('.projDescription *:nth-child(n)').hide();
-      $('.projDescription *:nth-child(1)').show();
-      $(this).hide();
-      $(this).prev().show();
-    });
-  };
 
   projectView.scroll = function(tease) {
     $('html, body').animate({
@@ -53,10 +56,26 @@
     }, 2000);
   };
 
-  //call the functions
-  projectView.initIndexPage = function(){
+  projectView.renderPortfolio = function(){
+    Project.all.forEach(function(project){
+      projectView.getTemplate(project, function(a){
+        $('#projects').append(a);
+      });
+    });
+    projectView.setPage();
+  };
+
+  projectView.setPage = function(){
+    projectView.createTeaser();
     $('.page-content').hide();
     $('.jumbotron').fadeTo(5000, 0.5);
   };
+
+  //call the functions
+  projectView.initIndexPage = function(){
+    projectView.renderPortfolio();
+  };
+
   module.projectView = projectView;
+
 })(window);

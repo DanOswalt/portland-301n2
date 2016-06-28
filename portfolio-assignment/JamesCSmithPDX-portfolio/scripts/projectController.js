@@ -2,7 +2,7 @@
   projectController = {};
 
   projectController.index = function() {
-    $('.page-content').hide();
+    Project.fetchAll(projectView.initIndexPage);
   };
 
   module.projectController = projectController;

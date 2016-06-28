@@ -7,7 +7,6 @@
       type: 'GET',
       url: './hbs/' + name + '.hbs',
       success: function (text) {
-        console.log('got template');
         var template = Handlebars.compile(text);
         var html = template(data);
         callback(html);

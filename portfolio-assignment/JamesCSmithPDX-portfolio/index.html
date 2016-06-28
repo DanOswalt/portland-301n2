@@ -27,39 +27,6 @@
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/projects-modules.css">
     <link rel="stylesheet" href="styles/main-modules.css">
-
-    <!-- Handlebars
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script id="portfolio-template" type="text/x-handlebars-template">
-        <div class="col-lg-6">
-            <article data-category="projectType">
-                <header>
-                    <h2>{{title}}</h2>
-                    <div class="contributors">
-                        <a href="{{contributorUrl}}">By {{contributor}}</a>
-                        <time pubdate datetime="2000-01-01" title={{postDate}}>{{publishStatus}}</time>
-                        <div>
-                            <img src="{{imgSrc}}" alt="{{imgAlt}}">
-                        </div>
-                    </div>
-                </header>
-                <section class="projDescription">{{{projDescription}}}
-                </section>
-                <a href="#" class="read-on">More &rarr;</a>
-                <a href="#" class="shrink">&larr;Less</a>
-            </article>
-        </div>
-    </script>
-
-    <script id="anagram-template" type="text/x-handlebars-template">
-        <div id="hbAnagram">
-            <p class="hbAnagram"><strong>Scrambled Name:</strong> {{hbAnagram}}</p>
-            <p class="hbAnagram">
-                Brought to you by string split into array, Fisher-Yates shuffled and reduced.
-            </p>
-        </div>
-    </script>
-
 </head>
 
 <body>
@@ -98,7 +65,7 @@
         </main>
         <footer id="footer">
             <p>
-              My recent GitHub repos:
+                My recent GitHub repos:
             </p>
             <ul class="nav nav-pills" id="repo"></ul>
         </footer>

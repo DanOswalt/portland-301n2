@@ -1,4 +1,4 @@
-(function(module){
+var projectModule = (function(){
 
   var Project = function(title, date, img, text, skills, url) {
     this.title = title;
@@ -19,6 +19,7 @@
     });
     return newSkills;
   });
+
 //DONE Refactor toHtml to implement a separated hbs template. Returns to Project.create()
   Project.prototype.toHtml = function(){
     console.log('inside of toHtml');
@@ -68,7 +69,7 @@
       Project.all.length = 0;
       $.ajax({
         type: 'HEAD',
-        url:'/scripts/js/projectItems.json'})
+        url:'/projects'})
         .then(function(data, message, xhr){
           newEtag = xhr.getResponseHeader('eTag');
           console.log(newEtag);
@@ -82,7 +83,7 @@
             $('#project-container').empty();
             $.ajax({
               dataType: 'json',
-              url:'/scripts/js/projectItems.json'
+              url:'/projects'
             })
             .then(function(data){
               data.sort(function(a,b){
@@ -102,7 +103,7 @@
       //ajax call to portfolioitems.json data and Project construction and project template removal
       $.ajax({
         dataType: 'json',
-        url:'/scripts/js/projectItems.json'
+        url:'/projects'
       })
       .then(function(data, message, xhr) {
         etag = xhr.getResponseHeader('eTag');
@@ -120,6 +121,8 @@
     }
   };
 
-  module.Project = Project;
+  return {
+    initAndFetchAll: Project.initAndFetchAll
+  }
 
-})(window);
+})();

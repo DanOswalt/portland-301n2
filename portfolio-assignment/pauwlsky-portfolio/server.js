@@ -1,6 +1,7 @@
 var express = require('express');
 var request = require('request');
 
+
 app = express();
 port = 3000;
 
@@ -14,13 +15,21 @@ app.get('/', function(req, res){
   res.send('index.html');
 });
 
-//this makes a request to my digital ocean node proxy, which is actaully making a call to the github API and sending the data back. 
+app.get('/projects', function(req, res) {
+  res.sendFile(__dirname + '/scripts/js/projectItems.json');
+});
+
+app.get('/about', function(req, res) {
+  res.sendFile(__dirname + '/scripts/js/about.json');
+});
+
+//this makes a request to my digital ocean node proxy, which is actaully making a call to the github API and sending the data back.
 app.get('/following', function(req,res){
   request('http://162.243.116.199/', function (error, response, body) {
   res.send(body);
+  });
 });
 
-});
 
 app.listen(port, function(){
   console.log('The magic happens on port ' + port)

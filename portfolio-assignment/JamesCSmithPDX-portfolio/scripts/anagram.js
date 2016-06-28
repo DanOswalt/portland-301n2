@@ -13,19 +13,19 @@
     var myAnagram = name.reduce(function(prev, next, index) {
       return prev + next;
     });
-    console.log(myAnagram);
 
-    //get anagram template
-
-    var source = $('#anagram-template').html();
-
-    //compile the anagram
-    var template = Handlebars.compile(source);
-    console.log(myAnagram);
+    //put myAnagram in object for Handlebars
     var context = {
       hbAnagram: myAnagram
     };
-    $('#anagram').append(template(context));
+  // //get anagram template
+    anagram.getTemplate(context, function(template){
+      $('#anagram').append(template);
+    });
+  };
+
+  anagram.getTemplate = function(data, callback){
+    getTemplate('anagram', data, callback);
   };
 
   //scrambled name function with reduce

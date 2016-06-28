@@ -1,13 +1,47 @@
 [
   {
+    "title": "Smarter Phone",
+    "category": "Design",
+    "date": "June 2016",
+    "description": "This is a mock for an iPhone education website that I'm currently building.",
+    "link": "/images/mocks/smarterphone-mock.png",
+    "image": "images/smarterphone.jpg"
+  },
+  {
+    "title": "Dreamset",
+    "category": "Design",
+    "date": "June 2016",
+    "description": "This is a mock for an e-commerce website that I'm currently building.",
+    "link": "/images/mocks/dreamset-mock.jpg",
+    "image": "images/dreamset.jpg"
+  },
+  {
+    "title": "The Leaky Roof",
+    "category": "Design",
+    "date": "May 2016",
+    "description": "This was a practice design pitch I did for a local Portland bar/restaurant to get back into the flow of designing for web.",
+    "link": "/images/mocks/leaky-mock.jpg",
+    "image": "images/leaky.jpg"
+  },
+  {
+    "title": "Floyd's Coffee",
+    "category": "Design",
+    "date": "May 2016",
+    "description": "This was a practice design pitch I did for a local Portland coffee shop to get back into the flow of designing for web.",
+    "link": "/images/mocks/floyds-mock.jpg",
+    "image": "images/floyds.jpg"
+  },
+  {
     "title": "SF Casual Carpool",
     "date": "January 2015",
+    "cateogory": "Website",
     "description": "Casual Carpool is a self-organized community of drivers and riders who meet at two dozen pickup points in the East Bay area to share a ride into San Francisco. This website is an effort to create a place where information about the community and their etiquette with people new to the idea so the community can grow.",
     "link": "http://www.sfcasualcarpool.com",
     "image": "images/casualcarpool.jpg"
   },
   {
     "title": "Barbareno",
+    "category": "Website (retired)",
     "date": "October 2014",
     "description": "Barbareño is an new, already acclaimed restaurant in Santa Barbara, CA that focuses on creating California cuisine unique to the terroir of the nearby region. It is the first restaurant created by chef Julian Martinez and has garnered attention from Sunset Magazine, the New York Times and many others for its distinct California style and culinary creativity.",
     "link": "http://www.barbareno.com",
@@ -15,6 +49,7 @@
   },
   {
     "title": "The Trappist",
+    "category": "Website",
     "date": "September 2012",
     "description": "The Trappist is a beer cafe in Oakland, California and a local favorite for those who enjoy American craft and European imported beers. It is one of the few bars created by Chuck Stilphen, who has made his mark in the Bay Area bar scene with bars that attract patrons from around the world.",
     "link": "http://www.thetrappist.com",

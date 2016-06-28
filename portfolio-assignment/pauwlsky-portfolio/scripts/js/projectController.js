@@ -1,8 +1,8 @@
-(function(module){
+var projectControllerModule = (function(){
 
-  var projectView = {};
+  var projectController = {};
 
-  projectView.populateFilters=function(){
+  projectController.populateFilters=function(){
     $.ajax({
       dataType: 'json',
       url:'/scripts/js/projectItems.json',
@@ -21,7 +21,7 @@
   };
 
 
-  projectView.showSection = function(){
+  projectController.showSection = function(){
     $('#about').hide();
     $('#project-li').on('click', function(e){
       e.preventDefault();
@@ -29,22 +29,16 @@
       $('#githubfollowing').hide();
       $('#project-container').fadeIn();
     });
-    $('#about-li').on('click', function(e){
-      e.preventDefault();
-      $('#project-container').hide();
-      $('#githubfollowing').hide();
-      $('#about').fadeIn();
-    });
   };
 
-  projectView.filterSelected = function(){
+  projectController.filterSelected = function(){
     $('#skills-select').on('change', function(e){
       var $selectVal = $(this).val();
       if($selectVal === 'See Project By Skills Used'){
         return;
       }
       $projectCategories = $('a[data-category="'+ $selectVal +'"]');
-      $('article').hide();
+      $('#project-container').find('article').fadeOut();
       $projectCategories.parents('article').fadeIn();
       if($selectVal === 'See All Categories'){
         $('article').show();
@@ -52,7 +46,7 @@
     });
   };
 
-  projectView.showMore = function(){
+  projectController.showMore = function(){
     console.log('inside showMore');
     $('.text').find('p:gt(0)').hide();
     $('article').on('click', '.show-more', function(e){
@@ -62,7 +56,7 @@
     });
   };
 
-  projectView.modalShow = function(){
+  projectController.modalShow = function(){
     $('.modal-show').on('click', function(e){
       e.preventDefault();
       $('.modal').css('display', 'block');
@@ -78,7 +72,7 @@
     });
   };
 
-  projectView.showSkillImgs = function(){
+  projectController.showSkillImgs = function(){
     $('.skills').on('click', 'a', function(e){
       var that = this;
       var $skillImagesContainer = $(this).parents('article').find('.skills-images');
@@ -118,16 +112,18 @@
   };
 
 
-  projectView.controllerInit = function(){
+  projectController.controllerInit = function(){
     console.log('inside controllerInit');
-    projectView.populateFilters();
-    projectView.showSection();
-    projectView.filterSelected();
-    projectView.showMore();
-    projectView.modalShow();
-    projectView.showSkillImgs();
+    projectController.populateFilters();
+    projectController.showSection();
+    projectController.filterSelected();
+    projectController.showMore();
+    projectController.modalShow();
+    projectController.showSkillImgs();
   };
 
-  module.projectView = projectView;
+  return {
+    controllerInit: projectController.controllerInit
+  }
 
-})(window);
+})();

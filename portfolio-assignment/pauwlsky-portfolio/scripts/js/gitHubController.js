@@ -1,4 +1,6 @@
-(function(module){
+
+var gitHubControllerModule = (function(){
+
   gitHubController = {};
 
   gitHubController.showFollowing = function(){
@@ -6,8 +8,8 @@
     $('#following-li').on('click', function(e){
       console.log('click!')
       e.preventDefault();
-      $('#project-container').fadeOut();
-      $('#about').fadeOut();
+      $('#project-container').hide();
+      $('#about').hide();
       $('#githubfollowing').fadeIn();
   });
 };
@@ -16,6 +18,8 @@
     gitHubController.showFollowing();
   }
 
-  module.gitHubController = gitHubController;
 
-})(window);
+return {
+  controllerInit: gitHubController.controllerInit
+}
+})();

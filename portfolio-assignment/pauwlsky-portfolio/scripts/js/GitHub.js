@@ -1,4 +1,6 @@
-(function(module){
+
+var gitHubModule = (function(){
+
 
   var GitHub = function(props){
     this.login = props.login,
@@ -39,6 +41,9 @@
   }
 
 
-    module.GitHub = GitHub;
 
-})(window);
+return {
+  initAndFetchAll : GitHub.initAndFetchAll
+}
+
+})();
